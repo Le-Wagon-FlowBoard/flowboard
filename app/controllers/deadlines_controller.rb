@@ -1,0 +1,2 @@
+class DeadlinesController < ApplicationController
+end
