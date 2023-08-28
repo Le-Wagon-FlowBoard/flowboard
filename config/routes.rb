@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "pages#home"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-
+  resources :projects, only: [:new, :create, :update, :destroy] do
+    resources :boards do
+      resources :tasks do
+        resources :assignee, :deadline, :label, :subtasks
+      end
+    end
+  end
 end
