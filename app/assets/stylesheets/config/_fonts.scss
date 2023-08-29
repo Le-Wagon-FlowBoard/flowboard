@@ -1,12 +1,12 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap");
 
 // To use a font file (.woff) uncomment following lines
 @font-face {
-  font-family: "JosefinSans";
-  src: font-url('JosefinSans-VariableFont_wght.ttf') format('truetype');
+	font-family: "JosefinSans";
+	src: font-url("JosefinSans-VariableFont_wght.ttf") format("truetype");
 }
 
 * {
-  font-family: 'JosefinSans', sans-serif;
+	font-family: "JosefinSans", sans-serif;
 }

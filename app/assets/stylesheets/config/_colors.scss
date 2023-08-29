@@ -1,30 +1,62 @@
 // Define variables for your color scheme
 
 // For example:
-$blue: #95AAE8;
-$darkblue: #3957FF;
-$white: #FFFFFF;
 
-.text-blue {
-    color: $blue;
+$background: #262c49;
+$dark-background: #10163a;
+$grey: #5a5f75;
+$light-grey: #c2c6dc;
+$purple: #6d62e4;
+$dark-purple: #3f3a9e;
+
+// $blue: #95AAE8;
+// $darkblue: #3957FF;
+// $white: #FFFFFF;
+
+.text-background {
+	color: $background;
 }
 
-.text-darkblue {
-    color: $darkblue;
+.text-dark-background {
+	color: $dark-background;
 }
 
-.text-white {
-    color: $white;
+.text-grey {
+	color: $grey;
 }
 
-.bg-blue {
-    background-color: $blue;
+.text-light-grey {
+	color: $light-grey;
 }
 
-.bg-darkblue {
-    background-color: $darkblue;
+.text-purple {
+	color: $purple;
 }
 
-.bg-white {
-    background-color: $white;
+.text-dark-purple {
+	color: $dark-purple;
+}
+
+.bg-background {
+	background-color: $background;
+}
+
+.bg-dark-background {
+	background-color: $dark-background;
+}
+
+.bg-grey {
+	background-color: $grey;
+}
+
+.bg-light-grey {
+	background-color: $light-grey;
+}
+
+.bg-purple {
+	background-color: $purple;
+}
+
+.bg-dark-purple {
+	background-color: $dark-purple;
 }
