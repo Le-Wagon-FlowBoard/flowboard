@@ -66,5 +66,4 @@ class SubtaskGroupsController < ApplicationController
   def add_subtask
     @subtask_group = SubtaskGroup.find(params[:id])
     @subtask = Subtask.new
-    @
 end
