@@ -1,1 +1,76 @@
-<%= @project.name %>
+<div class="bg-blue">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'shared/logo' %>
+    </div>
+    <div class="col-md-9">
+      <!-- Project Name with "Edit" button -->
+      <div class="d-flex align-items-center flex-column mb-3">
+        <h2 class="mb-0 text-black">
+          <span id="projectName"><%= @project.name %></span>
+        </h2>
+        <button type="button" class="btn btn-danger btn-floating m-4" id="editNameButton">
+          Edit <i class="fas fa-magic"></i>
+        </button>
+      </div>
+
+      <!-- Text field for editing project name -->
+      <div id="editNameField" style="display: none;">
+        <%= form_for @project, url: { action: :update }, remote: true, html: { class: "form" } do |f| %>
+          <div class="input-group mb-3">
+            <%= f.text_field :name, class: "form-control", id: "projectNameField" %>
+            <button class="btn btn-danger btn-floating" type="submit" >
+              <i class="fas fa-floppy-o" aria-hidden="true"></i> Save
+            </button>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Project Description with "Edit" button -->
+      <div class="d-flex align-items-center flex-column mb-3">
+        <p class="mb-0 text-black">
+          <span id="projectDescription"><%= @project.description %></span>
+        </p>
+        <button type="button" class="btn btn-danger btn-floating m-4" id="editDescriptionButton">
+          Edit <i class="fas fa-magic"></i>
+        </button>
+      </div>
+
+      <!-- Text area for editing project description -->
+      <div id="editDescriptionField" style="display: none;">
+        <%= form_for @project, url: { action: :update }, remote: true, html: { class: "form" } do |f| %>
+          <div class="input-group mb-3">
+            <%= f.text_area :description, class: "form-control", id: "projectDescriptionField" %>
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-floppy-o" aria-hidden="true"></i> Save
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const setupEditField = (editButton, editField, originalElement, fieldElement) => {
+      editButton.addEventListener("click", function() {
+        editField.style.display = "block";
+        originalElement.style.display = "none";
+        fieldElement.value = originalElement.innerText;
+      });
+    };
+
+    const editNameButton = document.getElementById("editNameButton");
+    const editNameField = document.getElementById("editNameField");
+    const projectName = document.getElementById("projectName");
+    const projectNameField = document.getElementById("projectNameField");
+    setupEditField(editNameButton, editNameField, projectName, projectNameField);
+
+    const editDescriptionButton = document.getElementById("editDescriptionButton");
+    const editDescriptionField = document.getElementById("editDescriptionField");
+    const projectDescription = document.getElementById("projectDescription");
+    const projectDescriptionField = document.getElementById("projectDescriptionField");
+    setupEditField(editDescriptionButton, editDescriptionField, projectDescription, projectDescriptionField);
+  });
+</script>
