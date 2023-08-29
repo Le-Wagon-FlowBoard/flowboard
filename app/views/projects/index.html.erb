@@ -45,7 +45,7 @@
       </div>
       <div class="modal-body text-light-grey bg-dark-background">
         <%= simple_form_for @project do |f| %>
-          <%= f.input :name, input_html: { class: "bg-dark-background text-light-grey" } %>
+          <%= f.input :name %>
           <%= f.input :description %>
           <div class="modal-footer mx-0 px-0 border-0">
             <%= f.button :submit, class: "main-btn" %>
