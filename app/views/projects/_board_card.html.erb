@@ -1,0 +1,20 @@
+<div class="container py-3">
+  <div class="row">
+    <% boards.each do |board| %>
+        <div class="col-md-4 mt-4 hover-pointer">
+            <div class="h-100 bg-dark-background rounded-4 p-4 min-viewport-30 d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="fs-4 text-light-grey"><%= board.name %></h5>
+                <p class="fs-6 text-light-grey"><%= board.description %></p>
+              </div>
+            </div>
+        </div>
+    <% end %>
+
+    <div class="col-md-4">
+      <div class="fs-3 min-viewport-30 w-100 text-light-grey mt-4 bg-dark-background rounded-4 p-4 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#createBoardModal" id="createBoardModalButton">
+        Create Board
+      </div>
+    </div>
+  </div>
+</div>

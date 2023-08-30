@@ -50,6 +50,18 @@
     </div>
   </div>
 </div>
+<!-- Area for boards -->
+
+<%= render 'board_card', boards: @boards %>
+
+<%= render 'new_board', project: @project, board: @board  %>
+
+
+<% if @project.errors.any? %>
+  <script>
+    document.getElementById("createProjectModalButton").click()
+  </script>
+<% end %>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
