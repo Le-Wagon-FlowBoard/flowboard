@@ -1,0 +1,20 @@
+<div class="p-3 min-viewport-fill-screen">
+  <div style="overflow-x: auto;" class="d-flex flex-row gap-3">
+    <% boards.each do |board| %>
+      <div class="mt-4 width-1-5">
+        <div class="h-100 bg-dark-background rounded-4 p-4 d-flex flex-column justify-content-between">
+          <div>
+            <h5 class="fs-4 text-light-grey"><%= board.name %></h5>
+            <p class="fs-6 text-light-grey"><%= board.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="mr-5">
+      <div class="fs-3 min-viewport-30 w-100 text-light-grey mt-4 bg-dark-background rounded-4 p-4 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#createBoardModal" id="createBoardModalButton">
+        Create Board
+      </div>
+    </div>
+  </div>
+</div>

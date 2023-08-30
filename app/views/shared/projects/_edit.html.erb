@@ -6,7 +6,7 @@
         <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body text-light-grey bg-dark-background">
-        <%= form_for @project, url: { action: :update }, remote: true, html: { class: "form" } do |f| %>
+        <%= form_for @project, url: project_path(@project), method: :patch, remote: true, html: { class: "form" } do |f| %>
           <%= f.label :name, class: "form-label" %>
           <%= f.text_field :name, class: "form-input", placeholder: "Project Name" %>
           <% if @project.errors.full_messages_for(:name).any? %>

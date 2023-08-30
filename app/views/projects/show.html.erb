@@ -1,1 +1,11 @@
 <%= render 'shared/navbar' %>
+
+<%= render 'shared/projects/boards/card', boards: @boards %>
+
+<%= render 'shared/projects/boards/create', project: @project, board: @board  %>
+
+<% if @board.errors.any? %>
+  <script>
+    document.getElementById("createBoardModalButton").click()
+  </script>
+<% end %>
