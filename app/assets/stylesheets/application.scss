@@ -9,3 +9,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.min-viewport-30 {
+	min-height: 30vh;
+}

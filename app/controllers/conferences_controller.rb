@@ -1,4 +1,4 @@
-class ConferencesController <
+class ConferencesController < ApplicationController
   def index
     @conferences = Conference.all
   end
@@ -6,7 +6,8 @@ class ConferencesController <
   def show
     @conference = Conference.find(params[:id])
   end
-    def new
+
+  def new
     @conference = Conference.new
   end
 
@@ -17,6 +18,8 @@ class ConferencesController <
     else
       render 'new'
     end
+  end
+
   def edit
     @conference = Conference.find(params[:id])
   end
