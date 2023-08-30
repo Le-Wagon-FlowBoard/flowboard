@@ -13,3 +13,45 @@
 .min-viewport-30 {
 	min-height: 30vh;
 }
+
+.min-viewport-fill-screen {
+	min-height: calc(100vh - 100px);
+}
+
+/* Adjusted width to 20% */
+.width-1-5 {
+	width: 18vw; /* 20% of the viewport width */
+	flex: 0 0 18vw; /* Set the flex properties to control growth and shrinking */
+}
+
+.form-input {
+	border-radius: 10px;
+	border: 1px solid $purple;
+	background-color: $background;
+	color: $light-grey;
+	font-size: 1rem;
+	padding: 0.6rem 1.2rem;
+	text-decoration: none;
+	min-width: 100%;
+	&:focus {
+		outline: none;
+	}
+}
+
+.project-card {
+	transition: background-color 0.3s ease;
+	&:hover {
+		background-color: $background-shade;
+	}
+}
+
+.logo {
+	height: 50px;
+	width: 72px;
+	object-fit: cover;
+}
+
+.icon {
+	height: 30px;
+	width: 30px;
+}

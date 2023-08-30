@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_project, only: [:create]
+  before_action :set_project, only: [:create, :show]
 	def index
 		@boards = Board.where(project_id: params[:id])
     @board = Board.new
@@ -18,8 +18,13 @@ class BoardsController < ApplicationController
 		@board.name = params[:board][:name]
     @board.description = params[:board][:description]
     @board.project_id = params[:project_id]
-		@board.save
-		redirect_to project_path(@project)
+
+		if @board.save
+			redirect_to project_path(@project), notice: 'Board was successfully created.'
+		else
+			@boards = Board.where(project_id: params[:project_id])
+			render "projects/show", status: :unprocessable_entity
+		end
 	end
 
 	def edit
@@ -40,6 +45,5 @@ class BoardsController < ApplicationController
 	end
   def set_project
     @project = Project.find_by_id(params[:project_id])
-
   end
 end

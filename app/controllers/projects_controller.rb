@@ -29,13 +29,13 @@ class ProjectsController < ApplicationController
   def edit
   end
 
-  def update
-    if @project.update(project_params)
-      redirect_to projects_path, notice: 'Project was successfully updated.'
-    else
-      render :index, status: :unprocessable_entity
-    end
-  end
+	def update
+		if @project.update(project_params)
+			redirect_to project_path(@project), notice: 'Project was successfully updated.'
+		else
+			render :index, status: :unprocessable_entity
+		end
+	end
 
   def destroy
     @project.destroy

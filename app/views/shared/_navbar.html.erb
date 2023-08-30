@@ -1,0 +1,14 @@
+<div class="bg-dark-background">
+  <div class="container py-3">
+    <div class="d-flex gap-5 align-items-center justify-content-between">
+      <%= image_tag "logo.png", class: "logo" %>
+      <div class="mx-4 text-light-grey fs-4"><%= @project.name %></div>
+      <div>
+        <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "mx-2 main-btn fs-6" %>
+        <%= image_tag "setting.svg", class: "icon", data: { bs_toggle: "modal", bs_target: "#editProjectModal" }, id: "editProjectModalButton" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/projects/edit' %>

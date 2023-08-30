@@ -3,6 +3,7 @@
 // For example:
 
 $background: #262c49;
+$background-shade: rgb(55, 64, 105);
 $dark-background: #10163a;
 $grey: #5a5f75;
 $light-grey: #c2c6dc;
@@ -37,6 +38,10 @@ $dark-purple: #3f3a9e;
 	color: $dark-purple;
 }
 
+.text-background-shade {
+	color: $background-shade;
+}
+
 .bg-background {
 	background-color: $background;
 }
@@ -59,4 +64,8 @@ $dark-purple: #3f3a9e;
 
 .bg-dark-purple {
 	background-color: $dark-purple;
+}
+
+.bg-background-shade {
+	background-color: $background-shade;
 }
