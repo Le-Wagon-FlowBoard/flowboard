@@ -1,6 +1,6 @@
 <% projects.each do |project| %>
     <div class="col-md-4 mt-4 hover-pointer">
-      <%=  link_to project_path(project), style: 'color: inherit; text-decoration: none;' do %>
+      <%= link_to project_path(project), style: 'color: inherit; text-decoration: none;' do %>
         <div class="h-100 bg-dark-background rounded-4 p-4 min-viewport-30 d-flex flex-column justify-content-between project-card">
           <div>
             <h5 class="fs-4 text-light-grey"><%= project.name %></h5>

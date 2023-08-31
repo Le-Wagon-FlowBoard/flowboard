@@ -42,8 +42,10 @@ Conference.create!(name: 'Conference 1', date: DateTime.now, project: Project.fi
 Conference.create!(name: 'Conference 2', date: DateTime.now, project: Project.second)
 
 # Task Labels
-Task.create!(name: 'Task 1', description: 'Description for Task 1', board: Board.first)
-Task.create!(name: 'Task 2', description: 'Description for Task 2', board: Board.second)
+100.times do |i|
+  Task.create!(name: "Task #{i}", description: "Description for Task #{i}", board: Board.first)
+end
+
 
 # Task Labels
 TaskLabel.create!(task: Task.first, label: Label.first)

@@ -16,6 +16,7 @@
 
 .min-viewport-fill-screen {
 	min-height: calc(100vh - 100px);
+	min-height: 30vh;
 }
 
 /* Adjusted width to 20% */
@@ -54,4 +55,59 @@
 .icon {
 	height: 30px;
 	width: 30px;
+}
+
+.icon-task {
+	height: 20px;
+	width: 20px;
+}
+
+.task-container {
+	position: relative;
+}
+
+.icons {
+	visibility: hidden;
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	display: flex;
+	gap: 10px;
+	z-index: 1;
+}
+
+.task-container:hover .icons {
+	visibility: visible;
+}
+
+.rotate-45 {
+	transform: rotate(45deg);
+}
+
+.modal-opened-content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	pointer-events: auto;
+	outline: 0;
+}
+
+.modal-opened-header {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 1rem;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.modal-opened-body {
+	position: relative;
+	flex: 1 1 auto;
+	padding: 1rem;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }

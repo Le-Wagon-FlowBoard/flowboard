@@ -1,11 +1,11 @@
 <div class="modal fade" id="createProjectModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header text-light-grey bg-dark-background border-0">
+    <div class="modal-opened-content">
+      <%= render "shared/modals/header" do %>
         <h5 class="modal-title" id="createProjectModalLabel">Create Project</h5>
-        <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body text-light-grey bg-dark-background">
+        <%= image_tag "plus.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
+      <% end %>
+      <%= render "shared/modals/content" do %>
         <%= form_for @project, url: { action: :create }, remote: true, html: { class: "form" } do |f| %>
           <%= f.label :name, class: "form-label" %>
           <%= f.text_field :name, class: "form-input", placeholder: "Project Name" %>
@@ -17,11 +17,11 @@
           <% if @project.errors.full_messages_for(:description).any? %>
             <p class="text-danger"><%= @project.errors.full_messages_for(:description).first %></p>
           <% end %>
-          <div class="modal-footer mx-0 px-0 border-0">
+          <%= render "shared/modals/footer" do %>
             <%= f.button :submit, class: "main-btn" %>
-          </div>
+          <% end %>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

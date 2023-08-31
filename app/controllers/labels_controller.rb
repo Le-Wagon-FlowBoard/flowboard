@@ -14,10 +14,11 @@ class LabelsController < ApplicationController
 
 	def create
 		@label = Label.new(label_params)
+		@project = Project.find(params[:project_id])
 		if @label.save
-			redirect_to @label
+			redirect_to project_path(@project), notice: 'Label created successfully'
 		else
-			render 'new'
+			render json: { status: @label.errors.full_messages }
 		end
 	end
 
@@ -38,5 +39,11 @@ class LabelsController < ApplicationController
 		@label = Label.find(params[:id])
 		@label.destroy
 		redirect_to labels_path
+	end
+
+	private
+
+	def label_params
+		params.require(:label).permit(:name, :color, :project_id)
 	end
 end

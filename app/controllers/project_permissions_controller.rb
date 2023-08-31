@@ -5,6 +5,8 @@ class ProjectPermissionsController < ApplicationController
 
 	def new
 		@project_permission = ProjectPermission.new
+
+
 	end
 
 	def create
