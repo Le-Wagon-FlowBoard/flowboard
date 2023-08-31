@@ -17,11 +17,6 @@
           <% if @project.errors.full_messages_for(:description).any? %>
             <p class="text-danger"><%= @project.errors.full_messages_for(:description).first %></p>
           <% end %>
-          <div class="mt-3">
-            <%= f.label :user_ids, "Add Users", class: "form-label" %>
-            <%= f.collection_select :user_ids, User.all, :id, :first_name, {}, { multiple: true, class: "form-input" } %>
-          </div>
-          
           <div class="modal-footer mx-0 px-0 border-0">
             <%= link_to "Delete", project_path(@project), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "main-btn" %>
             <%= f.button :submit, class: "main-btn" %>
