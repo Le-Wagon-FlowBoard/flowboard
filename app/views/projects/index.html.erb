@@ -1,12 +1,14 @@
 <div class="bg-dark-background">
   <div class="container py-3">
-    <div class="d-flex gap-5 align-items-center justify-content-between py-5">
-      <%= render 'shared/logo' %>
-      <div class="d-flex justify-content-center flex-column">
-        <h1 class="text-light-grey fs-1">Flowboard</h1>
-        <p class="text-light-grey fs-4 mb-3">FlowBoard is more than just a project management platform. It is a complete solution that allows you to streamline your tasks, collaborate seamlessly with your team, manage project timelines efficiently, track progress with detailed analytics, and facilitate effective communication, all within a single, intuitive interface.</p>
+    <%= link_to root_path,style: 'color: inherit; text-decoration: none;' do %>
+      <div class="d-flex gap-5 align-items-center justify-content-between py-5">
+        <%= render 'shared/logo' %>
+        <div class="d-flex justify-content-center flex-column">
+          <h1 class="text-light-grey fs-1">Flowboard</h1>
+          <p class="text-light-grey fs-4 mb-3">FlowBoard is more than just a project management platform. It is a complete solution that allows you to streamline your tasks, collaborate seamlessly with your team, manage project timelines efficiently, track progress with detailed analytics, and facilitate effective communication, all within a single, intuitive interface.</p>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 
