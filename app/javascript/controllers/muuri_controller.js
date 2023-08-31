@@ -6,6 +6,7 @@ export default class extends Controller {
         var dragContainer = document.querySelector('.drag-container');
 
         // Board Draggables
+        // allow boards to be dragged to the left and right
         var boardItemsContainer = [].slice.call(document.querySelector('.board'));
         var boardColumnGrids = [];
 
