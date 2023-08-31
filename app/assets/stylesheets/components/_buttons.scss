@@ -12,3 +12,12 @@
 	text-decoration: none;
 	max-width: max-content;
 }
+
+.add-task-btn {
+	color: $light-grey;
+	font-size: 1rem;
+	background-color: $dark-background;
+	&:hover {
+		background-color: $purple;
+	}
+}

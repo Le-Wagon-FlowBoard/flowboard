@@ -1,0 +1,84 @@
+.drag-container {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1000;
+}
+.board {
+	position: relative;
+}
+.board-column {
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 0 4px;
+	width: 18vw; /* 20% of the viewport width */
+	flex: 0 0 18vw;
+	min-height: 30vh;
+	// max height is the height of the viewport minus the height of the header and footer
+	max-height: calc(100vh - 250px);
+	z-index: 1;
+}
+.board-column.muuri-item-releasing {
+	z-index: 2;
+}
+.board-column.muuri-item-dragging {
+	z-index: 3;
+	cursor: move;
+}
+.board-column-container {
+	position: relative;
+}
+.board-column-header {
+	position: relative;
+	height: 50px;
+	line-height: 50px;
+	overflow: hidden;
+	padding: 0 20px;
+	background: $dark-background;
+	color: $light-grey;
+	border-radius: 10px 10px 0 0;
+}
+
+.board-column-footer {
+	position: relative;
+	overflow: hidden;
+	padding: 0 8px 8px 8px;
+	background: $dark-background;
+	color: $light-grey;
+	border-radius: 0 0 10px 10px;
+}
+
+@media (max-width: 600px) {
+	.board-column-header {
+		text-indent: -1000px;
+	}
+}
+.board-column-content-wrapper {
+	position: relative;
+	padding: 0 8px 8px 8px;
+	background: $dark-background;
+	overflow-y: scroll;
+	min-height: 100px;
+	max-height: calc(100vh - 250px);
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+.board-column-content {
+	position: relative;
+	min-height: 100px;
+}
+.board-item {
+	position: absolute;
+	width: 100%;
+}
+.board-item.muuri-item-releasing {
+	z-index: 9998;
+}
+.board-item.muuri-item-dragging {
+	z-index: 9999;
+	cursor: move;
+}
+.board-item.muuri-item-hidden {
+	z-index: 0;
+}

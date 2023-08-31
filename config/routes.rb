@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   resources :projects do
+    resources :labels
     resources :boards do
       resources :tasks do
         resources :assignee, :deadline, :label, :subtasks

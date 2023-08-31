@@ -16,6 +16,7 @@
 
 .min-viewport-fill-screen {
 	min-height: calc(100vh - 100px);
+	min-height: 30vh;
 }
 
 /* Adjusted width to 20% */
@@ -54,4 +55,32 @@
 .icon {
 	height: 30px;
 	width: 30px;
+}
+
+.icon-task {
+	height: 20px;
+	width: 20px;
+}
+
+.task-container {
+	position: relative;
+}
+
+.icons {
+	visibility: hidden;
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	display: flex;
+	gap: 10px;
+	z-index: 1;
+}
+
+.task-container:hover .icons {
+	visibility: visible;
+}
+
+.rotate-45 {
+	transform: rotate(45deg);
 }
