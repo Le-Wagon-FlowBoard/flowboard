@@ -1,8 +1,8 @@
 import { Controller } from '@hotwired/stimulus';
-const columnGrids = [];
 
 export default class extends Controller {
     connect() {
+        this.columnGrids = [];
         var dragContainer = document.querySelector('.drag-container');
 
         // Board Draggables
@@ -19,7 +19,7 @@ export default class extends Controller {
                 items: '.board-item',
                 dragEnabled: true,
                 dragSort: function () {
-                    return columnGrids;
+                    return this.columnGrids;
                 },
                 dragStartPredicate: {
                     distance: 0,
@@ -76,7 +76,7 @@ export default class extends Controller {
                     boardGrid.refreshItems().layout();
                 });
 
-            columnGrids.push(grid);
+            this.columnGrids.push(grid);
         });
 
         // Init board grid so we can drag those columns around.
@@ -155,7 +155,7 @@ export default class extends Controller {
         taskContainer.appendChild(iconsContainer);
         taskElement.appendChild(taskContainer);
 
-        const grid = columnGrids.find((columnGrid) => {
+        const grid = this.columnGrids.find((columnGrid) => {
             return columnGrid.getElement().id === `board-${boardId}`;
         });
         grid.add(taskElement);
