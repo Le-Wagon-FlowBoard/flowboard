@@ -15,6 +15,8 @@ class BoardsController < ApplicationController
 
 	def create
 		@board = Board.new
+		@labels = Label.where(project_id: params[:project_id])
+		@label = Label.new
 		@board.name = params[:board][:name]
     @board.description = params[:board][:description]
     @board.project_id = params[:project_id]
