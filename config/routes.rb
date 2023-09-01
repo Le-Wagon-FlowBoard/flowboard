@@ -10,4 +10,9 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :tasks, only: [] do
+    resources :task_labels, only: [:create]
+  end
+
+
 end
