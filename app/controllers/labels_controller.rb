@@ -28,8 +28,9 @@ class LabelsController < ApplicationController
 
 	def update
 		@label = Label.find(params[:id])
+		@project = Project.find(params[:project_id])
 		if @label.update(label_params)
-			redirect_to @label
+			redirect_to project_path(@project), notice: 'Label updated successfully'
 		else
 			render 'edit'
 		end
