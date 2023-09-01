@@ -91,7 +91,6 @@ export default class extends Controller {
     }
 
     addTask(event) {
-        console.log("event:", event);
         const boardId = event.currentTarget.dataset.boardId;
         const taskName = prompt("Enter task name to add to board No. " + boardId);
         if (taskName !== null && taskName.trim() !== "") {
@@ -150,6 +149,54 @@ export default class extends Controller {
         const iconsContainer = document.createElement("div");
         iconsContainer.classList.add("icons", "bg-background", "p-2");
         iconsContainer.style.visibility = "hidden";
+        // <div class="icons bg-background p-2">
+        //     <%= image_tag "clock.svg", class: "to-disable-btn icon-task" %>
+        //     <%= image_tag "label.svg", class: "to-disable-btn icon-task" %>
+        //     <%= image_tag "user.svg", class: "to-disable-btn icon-task" %>
+        //     <%= image_tag "infos.svg", class: "to-disable-btn icon-task" %>
+        // </div>
+
+        // .icons {
+        	// visibility: hidden;
+        	// position: absolute;
+        	// top: 50%;
+        	// right: 10px;
+        	// transform: translateY(-50%);
+        	// display: flex;
+        	// gap: 10px;
+        	// z-index: 1;
+        // }
+        // 
+        // .task-container:hover .icons {
+        	// visibility: visible;
+        // }
+        const clockIcon = document.createElement("img");
+        clockIcon.src = "/assets/clock.svg";
+        clockIcon.classList.add("to-disable-btn", "icon-task");
+        iconsContainer.appendChild(clockIcon);
+
+        const labelIcon = document.createElement("img");
+        labelIcon.src = "/assets/label.svg";
+        labelIcon.classList.add("to-disable-btn", "icon-task");
+        iconsContainer.appendChild(labelIcon);
+
+        const userIcon = document.createElement("img");
+        userIcon.src = "/assets/user.svg";
+        userIcon.classList.add("to-disable-btn", "icon-task");
+        iconsContainer.appendChild(userIcon);
+
+        const infosIcon = document.createElement("img");
+        infosIcon.src = "/assets/infos.svg";
+        infosIcon.classList.add("to-disable-btn", "icon-task");
+        iconsContainer.appendChild(infosIcon);
+        
+        taskContainer.addEventListener("mouseenter", () => {
+            iconsContainer.style.visibility = "visible";
+        });
+
+        taskContainer.addEventListener("mouseleave", () => {
+            iconsContainer.style.visibility = "hidden";
+        });
 
         taskContainer.appendChild(taskNameElement);
         taskContainer.appendChild(iconsContainer);
