@@ -13,9 +13,8 @@
             <p class="text-danger"><%= @project.errors.full_messages_for(:name).first %></p>
           <% end %>
           <%= f.label :color, class: "form-label mt-3" %>
-          <div style="height: 200px;">
             <%= f.color_field :color, class: "form-input", placeholder: "Color Label" %>
-          </div>
+          
           <% if @project.errors.full_messages_for(:color).any? %>
             <p class="text-danger"><%= @project.errors.full_messages_for(:color).first %></p>
           <% end %>

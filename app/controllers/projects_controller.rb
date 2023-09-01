@@ -33,6 +33,7 @@ class ProjectsController < ApplicationController
   end
 
 	def update
+
 		if @project.update(project_params)
 			redirect_to project_path(@project), notice: 'Project was successfully updated.'
 		else
