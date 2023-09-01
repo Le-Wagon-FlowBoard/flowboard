@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     @boards = Board.where(project_id: @project.id)
     @label = Label.new
     @labels = Label.where(project_id: @project.id)
+    @assignee = Assignee.new
   end
 
   def new

@@ -5,7 +5,7 @@
             <div class="icons bg-background p-2">
                 <%= image_tag "clock.svg", class: "to-disable-btn icon-task" %>
                 <%= image_tag "label.svg", class: "to-disable-btn icon-task" %>
-                <%= image_tag "user.svg", class: "to-disable-btn icon-task" %>
+                <%= image_tag "user.svg", class: "to-disable-btn icon-task", data: { bs_toggle: "modal", bs_target: "#showAssigneesModal" }, id: "showAssigneesModalButton"%>
                 <%= image_tag "infos.svg", class: "to-disable-btn icon-task" %>
             </div>
         </div>

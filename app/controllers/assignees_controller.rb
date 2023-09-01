@@ -12,6 +12,7 @@ class AssigneesController < ApplicationController
 	end
 
 	def create
+    raise
 		@assignee = Assignee.new(assignee_params)
 		if @assignee.save
 			redirect_to assignees_path
