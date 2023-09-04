@@ -6,13 +6,9 @@ Rails.application.routes.draw do
     resources :labels
     resources :boards do
       resources :tasks do
+        post '/add_labels_to_task', to: 'tasks#add_labels_to_task', as: 'add_labels_to_task'
         resources :assignee, :deadline, :label, :subtasks
       end
     end
   end
-  resources :tasks, only: [] do
-    resources :task_labels, only: [:create]
-  end
-
-
 end

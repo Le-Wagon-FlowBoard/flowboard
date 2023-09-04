@@ -4,7 +4,7 @@
 
 <%= render 'shared/projects/boards/create', project: @project, board: @board  %>
 
-
+<%= render "shared/projects/labels/add" %>
 <% if @board.errors.any? %>
   <script>
     document.getElementById("createBoardModalButton").click()

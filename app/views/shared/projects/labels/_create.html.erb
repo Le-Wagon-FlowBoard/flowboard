@@ -1,4 +1,4 @@
-</div><div class="modal fade" id="createLabelModal" tabindex="-1" aria-labelledby="createLabelModalLabel" aria-hidden="true">
+<div class="modal fade" id="createLabelModal" tabindex="-1" aria-labelledby="createLabelModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-opened-content">
       <%= render "shared/modals/header" do %>
@@ -13,8 +13,8 @@
             <p class="text-danger"><%= @project.errors.full_messages_for(:name).first %></p>
           <% end %>
           <%= f.label :color, class: "form-label mt-3" %>
-            <%= f.color_field :color, class: "form-input", placeholder: "Color Label" %>
-          
+            <%= f.color_field :color, id: "Color_field_button", class: "form-input", placeholder: "Color Label", value: @label.color %>
+
           <% if @project.errors.full_messages_for(:color).any? %>
             <p class="text-danger"><%= @project.errors.full_messages_for(:color).first %></p>
           <% end %>

@@ -1,23 +1,33 @@
 <div class="modal fade" id="addLabelModal" tabindex="-1" aria-labelledby="addLabelModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-opened-content">
-      <%= render "shared/modals/header" do %>
-        <h5 class="modal-title" id="addLabelModalLabel">Add a label to the Task</h5>
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="addLabelModalLabel">Assigner les labels</h5>
         <%= image_tag "plus.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
-      <% end %>
-      <%= render "shared/modals/content" do %>
-        <% if @project.labels.any? %>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <%= render "shared/modals/content" do %>
           <% @project.labels.each do |label| %>
-            <%= form_for [task, TaskLabel.new], remote: true do |f| %>
-              <%# checkbox for each label %>
-              <%= f.check_box :label_id, { checked: task.task_labels.include?(label), class: "form-check-input", id: "task_label_#{label.id}" }, label.id, nil %>
-            
-            <% end %>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="selected_labels[]" value="<%= label.id %>">
+              <label class="form-check-label" for="label<%= label.id %>">
+                <%= label.name %>
+              </label>
+            </div>
           <% end %>
-        <% else %>
-          <p>No labels found.</p>
         <% end %>
-      <% end %>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" id="assignLabelsBtn" data-task-id="<%= @task.id %>">Assigner les labels</button>
+      </div>
     </div>
   </div>
 </div>
+
+<%= javascript_include_tag "add_labels" %>
