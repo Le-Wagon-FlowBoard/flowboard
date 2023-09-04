@@ -1,6 +1,4 @@
-<% task = local_assigns[:task] %>
-
-<div class="modal fade" id="addLabelModal" tabindex="-1" aria-labelledby="addLabelModalLabel" aria-hidden="true">
+<div class="modal fade" id="addLabelModal-<%= task.id %>" tabindex="-1" aria-labelledby="addLabelModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-opened-content">
       <%= render "shared/modals/header" do %>
