@@ -6,6 +6,7 @@
         <div class="board-column-header p-0"  >
           <div data-edit-board-target = "card" data-action="click->edit-board#displayForm">
             <div data-edit-board-target = "infos" class="px-4">
+            
               <%= board.name %>
             </div>
             <%= render "shared/projects/boards/form", project: @project, board: board %>
