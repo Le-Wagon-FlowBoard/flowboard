@@ -20,7 +20,7 @@
                 <p class="text-danger"><%= label.errors.full_messages_for(:name).first %></p>
               <% end %>
               <%= f.label :color, class: "form-label mt-3" %>
-              <%= f.color_field :color, class: "form-input h-75", placeholder: "Color Label", value: label.color %>
+              <%= f.color_field :color, id: "Color_field_button", class: "form-input w-50", placeholder: "Color Label", value: label.color %>
               <% if label.errors.full_messages_for(:color).any? %>
                 <p class="text-danger"><%= label.errors.full_messages_for(:color).first %></p>
               <% end %>
