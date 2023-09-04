@@ -1,14 +1,12 @@
-<% board.tasks.each do |task| %>
-    <div class="board-item" id="board-<%= board.id %>-task-<%= task.id %>">
-        <div class="task-container bg-background py-2 px-3 rounded-2 mt-2 hover-pointer d-flex justify-content-between align-items-center w-100">
-            <div class="text-light-grey fs-6 mb-0 overflow-hidden flex-grow-1"><%= task.name %></div>
-            <div class="icons bg-background p-2">
-
-                <%= image_tag "clock.svg", class: "to-disable-btn icon-task" %>
-                <%= image_tag "label.svg", class: "to-disable-btn icon-task", data: { bs_toggle: "modal", bs_target: "#addLabelModal" }, id: "addLabelModalButton"%>
-                <%= image_tag "user.svg", class: "to-disable-btn icon-task" %>
-                <%= image_tag "infos.svg", class: "to-disable-btn icon-task" %>
-            </div>
+<div class="board-item" id="board-<%= task.board.id %>-task-<%= task.id %>">
+    <div class="task-container bg-background py-2 px-3 rounded-2 mt-2 hover-pointer d-flex justify-content-between align-items-center w-100">
+        <div class="text-light-grey fs-6 mb-0 overflow-hidden flex-grow-1"><%= task.name %></div>
+        <div class="icons bg-background p-2" data-controller="add-id-to-labels-modal">
+            <%= image_tag "clock.svg", class: "to-disable-btn icon-task", data: { bs_toggle: "modal", bs_target: "#addDeadLineModal" }, id: "addDeadLineModalButton"%>
+            <%= image_tag "label.svg", class: "to-disable-btn icon-task", data: { bs_toggle: "modal", bs_target: "#addLabelModal", action: "click->add-id-to-labels-modal#addIdToLabelsModal" }, id: "addLabelModalButton"%>
+            <%= image_tag "user.svg", class: "to-disable-btn icon-task" %>
+            <%= image_tag "infos.svg", class: "to-disable-btn icon-task" %>
         </div>
     </div>
-<% end %>
+</div>
+

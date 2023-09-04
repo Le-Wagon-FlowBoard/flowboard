@@ -1,9 +1,11 @@
 class TaskLabelsController < ApplicationController
 	def create
 		@task = Task.find(params[:task_id])
-		@label = Label.find(params[:label_id])
-		@task.labels << @label
-		redirect_to task_path(@task)
+		for label in Label.all
+			if label.id == params[:label_id].to_i
+				@label = label
+			end
+		end
 	end
 
 	def destroy
@@ -49,7 +51,7 @@ class TaskLabelsController < ApplicationController
 	private
 
 	def label_params
-		params.require(:label).permit(:name)
+		params.require(:label).permit(:name, :task_id, :label_id)
 	end
 
 end
