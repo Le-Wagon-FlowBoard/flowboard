@@ -7,7 +7,9 @@
         <div class="board-column-header"><%= board.name %></div>
         <div class="board-column-content-wrapper">
           <div class="board-column-content" id="board-<%= board.id %>" >
-            <%= render "shared/projects/boards/task", board: board %>
+            <% board.tasks.each do |task| %>
+              <%= render "shared/projects/boards/task", task: task %>
+            <% end %>
           </div>
         </div>
         <div class="board-column-footer">
@@ -19,3 +21,9 @@
     </div>
   <% end %>
 </div>
+
+<% boards.each do |board| %>
+  <% board.tasks.each do |task| %>
+    <%= render "shared/projects/labels/add", task: task %>
+  <% end %>
+<% end %>

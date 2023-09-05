@@ -22,3 +22,19 @@
 		box-shadow: 0 0 40px 40px $purple inset;
 	}
 }
+
+.label-checkbox {
+	// same style as buttons c bo tr bo magnifique meme super bo
+	margin-top: 0;
+	border: 1px solid $purple;
+	background-color: $background;
+	color: $light-grey;
+	font-size: 1rem;
+	padding: 0.6rem;
+	transition: box-shadow 200ms ease-in-out, color 200ms ease-in-out;
+	&:checked {
+		background-color: $purple;
+		color: $background;
+	}
+	text-decoration: none;
+}

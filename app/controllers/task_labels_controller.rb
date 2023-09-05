@@ -1,9 +1,14 @@
 class TaskLabelsController < ApplicationController
 	def create
 		@task = Task.find(params[:task_id])
-		@label = Label.find(params[:label_id])
-		@task.labels << @label
-		redirect_to task_path(@task)
+		@project = @task.board.project
+		labels = params[:label_ids]
+		# destroy all TaskLabels for this task
+		TaskLabel.where(task_id: @task.id).destroy_all
+		labels.each do |label|
+			TaskLabel.create(task_id: @task.id, label_id: label)
+		end
+		redirect_to project_path(@project), notice: 'Labels updated successfully'
 	end
 
 	def destroy
@@ -49,7 +54,7 @@ class TaskLabelsController < ApplicationController
 	private
 
 	def label_params
-		params.require(:label).permit(:name)
+		params.require(:label).permit(:name, :task_id, :label_id)
 	end
 
 end
