@@ -1,0 +1,19 @@
+<div class="modal fade" id="addDeadLineModal-<%= task.id %>" tabindex="-1" aria-labelledby="addDeadLineModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-opened-content">
+      <%= render "shared/modals/header" do %>
+        <h5 class="modal-title" id="addDeadLineModalLabel">Add DeadLine to the task <%= task.name %></h5>
+        <%= image_tag "plus.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
+      <% end %>
+      <%= render "shared/modals/content" do %>
+        <%= form_for task, url: task_deadline_path(task), method: :patch, remote: true, html: { class: "form" } do |f| %>
+          <%= f.datetime_field :deadline, class: "form-control" %>
+          <%= hidden_field_tag "task_id", task.id %>
+          <%= render "shared/modals/footer" do %>
+            <%= submit_tag "Update DeadLine", class: "main-btn" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
