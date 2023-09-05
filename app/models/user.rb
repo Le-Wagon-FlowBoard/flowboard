@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :projects, dependent: :destroy
   has_many :project_permissions, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :permitted_projects, through: :project_permissions, class_name: "Project", source: :project
   has_many :assignees, dependent: :destroy
 
   validates :first_name, presence:true

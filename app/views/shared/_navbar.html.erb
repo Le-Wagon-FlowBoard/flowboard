@@ -8,6 +8,7 @@
       <div>
         <%= image_tag "label.svg", class: "icon", data: { bs_toggle: "modal", bs_target: "#showLabelModal" }, id: "showLabelModalButton" %>
         <%= image_tag "plus.svg", class: "icon", data: { bs_toggle: "modal", bs_target: "#createBoardModal" }, id: "createBoardModalButton" %>
+        <%= image_tag "member.svg", class: "icon", data: { bs_toggle: "modal", bs_target: "#editMembersModal" }, id: "editMembersModalButton" %>
         <%= link_to "Log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "mx-2 main-btn fs-6" %>
         <%= image_tag "setting.svg", class: "icon", data: { bs_toggle: "modal", bs_target: "#editProjectModal" }, id: "editProjectModalButton" %>
       </div>
@@ -17,5 +18,6 @@
 
 <%= render 'shared/projects/edit' %>
 <%= render 'shared/projects/labels/labels' %>
+<%= render 'shared/projects/members/edit' %>
 
 
