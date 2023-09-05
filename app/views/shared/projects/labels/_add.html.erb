@@ -10,14 +10,13 @@
           <% @project.labels.each do |label| %>
             <% bgcolor = label.color %>
             <div class="p-2 my-2 rounded-2" style="background-color: <%= bgcolor %>;">
-              <%= check_box_tag "label_ids[]", label.id, task.task_labels.include?(label), class: "form-check-input label-checkbox" %>
+              <input type="checkbox" name="label_ids[]" id="label_ids_<%= label.id %>" value="<%= label.id %>" class="form-check-input label-checkbox" <%= "checked" if task.task_labels.find_by(label_id: label.id) %>>
               <%= label_tag "label_ids_#{label.id}", label.name, class: "form-check-label" %>
-              <%= hidden_field_tag "task_id", task.id %>
             </div>
           <% end %>
           <%= hidden_field_tag "task_id", task.id %>
           <%= render "shared/modals/footer" do %>
-            <%= submit_tag "Update Labels", class: "main-btn" %>
+            <%= submit_tag "Update Labels", class: "main-btn", data: { bs_dismiss: "modal" } %> 
           <% end %>
         <% end %>
       <% end %>
