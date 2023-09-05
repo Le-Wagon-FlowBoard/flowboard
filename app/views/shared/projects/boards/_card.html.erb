@@ -25,5 +25,6 @@
 <% boards.each do |board| %>
   <% board.tasks.each do |task| %>
     <%= render "shared/projects/labels/add", task: task %>
+    <%= render "shared/projects/boards/deadline", task: task, board: board %>
   <% end %>
 <% end %>
