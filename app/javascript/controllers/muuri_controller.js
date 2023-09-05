@@ -2,7 +2,12 @@ import { Controller } from '@hotwired/stimulus';
 const columnGrids = [];
 
 export default class extends Controller {
+
+    static targets = ["infos", "form", "card", "input"]
+
     connect() {
+
+      console.log("Muuri controller connected")
         var dragContainer = document.querySelector('.drag-container');
 
         // Board Draggables
@@ -90,29 +95,48 @@ export default class extends Controller {
         }
     }
 
+    showForm(event) {
+        let boardId = event.target.id.split("-")[2]
+        event.preventDefault();
+        document.getElementById(`add-task-${boardId}`).classList.add("d-none");
+        document.getElementById(`form-task-${boardId}`).classList.remove("d-none");
+        document.getElementById(`form-task-${boardId}`).focus();
+    }
+
     addTask(event) {
-        const boardId = event.currentTarget.dataset.boardId;
-        const taskName = prompt("Enter task name to add to board No. " + boardId);
-        if (taskName !== null && taskName.trim() !== "") {
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-            fetch(`/projects/${this.projectId}/boards/${boardId}/tasks`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-Token": csrfToken,
-                },
-                body: JSON.stringify({
-                    board_id: boardId,
-                    task_name: taskName,
-                }),
-            })
-                .then((response) => response.json())
-                .then((response) => {
-                    this.createTaskElement(boardId, response.id, taskName);
-                })
-                .catch((error) => {
-                    console.error("Error saving task to database:", error);
-                });
+        event.preventDefault();
+
+        if (event.key === "Enter") {
+          const boardId = event.currentTarget.dataset.boardId;
+          const taskName = document.getElementById(`form-task-${boardId}`).value;
+          if (taskName !== null && taskName.trim() !== "") {
+              const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+              fetch(`/projects/${this.projectId}/boards/${boardId}/tasks`, {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json",
+                      "X-CSRF-Token": csrfToken,
+                  },
+                  body: JSON.stringify({
+                      board_id: boardId,
+                      task_name: taskName,
+                  }),
+              })
+                  .then((response) => response.json())
+                  .then((response) => {
+                    console.log(response)
+                      this.createTaskElement(boardId, response.id, taskName);
+                      document.getElementById(`form-task-${boardId}`).value = "";
+                  })
+                  .catch((error) => {
+                      console.error("Error saving task to database:", error);
+                  });
+          }
+        } else if (event.key === "Escape") {
+          const boardId = event.currentTarget.dataset.boardId;
+          document.getElementById(`add-task-${boardId}`).classList.remove("d-none");
+          document.getElementById(`form-task-${boardId}`).classList.add("d-none");
+          document.getElementById(`form-task-${boardId}`).value = "";
         }
     }
 
@@ -166,7 +190,7 @@ export default class extends Controller {
         	// gap: 10px;
         	// z-index: 1;
         // }
-        // 
+        //
         // .task-container:hover .icons {
         	// visibility: visible;
         // }
@@ -189,7 +213,7 @@ export default class extends Controller {
         infosIcon.src = "/assets/infos.svg";
         infosIcon.classList.add("to-disable-btn", "icon-task");
         iconsContainer.appendChild(infosIcon);
-        
+
         taskContainer.addEventListener("mouseenter", () => {
             iconsContainer.style.visibility = "visible";
         });
