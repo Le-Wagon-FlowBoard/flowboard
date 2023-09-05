@@ -17,10 +17,8 @@
             </div>
             <% end %>
         <% end %>
-        <%= form_for @project_permission, url: project_project_permissions_path(@project), method: :post, remote: true, html: { class: "form" } do |f| %>
-          <%= f.label :name, class: "form-label" %>
-
-<%# do not include users that already have a relation with project_permissions %>
+        <%= form_for @project_permission, url: project_project_permissions_path(@project), method: :post, remote: true, html: { class: "form mt-4" } do |f| %>
+          <%= f.label "Add a new member", class: "form-label" %>
           <%= f.collection_select :user_id, User.all - @project.users, :id, :first_name, { prompt: "Select User" }, class: "form-input" %>
 
           <%= f.hidden_field :project_id, value: @project.id %>
