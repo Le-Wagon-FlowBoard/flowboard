@@ -1,8 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+  # do not add if project.user_id = current_user.id
   def index
-    @projects = Project.where(user_id: current_user.id)
+    all_project_ids = current_user.project_ids + current_user.permitted_project_ids
+    @projects = Project.where(id: all_project_ids)
     @project = Project.new
   end
 
@@ -14,6 +16,8 @@ class ProjectsController < ApplicationController
     @labels = Label.where(project_id: @project.id)
     @task = Task.new
     @tasks = Task.where(project_id: @project.id)
+    @project_permission = ProjectPermission.new
+    @project_permissions = @project.project_permissions
   end
 
 

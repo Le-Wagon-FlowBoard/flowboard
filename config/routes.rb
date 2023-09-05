@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :labels
+    resources :project_permissions
     resources :boards do
       resources :tasks
     end

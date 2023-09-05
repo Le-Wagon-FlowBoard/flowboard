@@ -1,0 +1,32 @@
+<div class="modal fade" id="editMembersModal" tabindex="-1" aria-labelledby="editMembersModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-opened-content">
+      <%= render "shared/modals/header" do %>
+        <h5 class="modal-title" id="createLabelModalLabel">Manage project members</h5>
+        <%= image_tag "plus.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
+      <% end %>
+      <%= render "shared/modals/content" do %>
+      <%# list all users already allowed with a trash button to delete it %>
+        <% @project.project_permissions.each do |permission| %>
+            <%= form_for permission, url: project_project_permission_path(@project, permission), method: :delete, remote: true do |f| %>
+            <div class="d-flex justify-content-between align-items-center my-2">
+              <%= permission.user.first_name %> <%= permission.user.last_name %>
+              <%= f.button :submit, class: "main-btn px-3 py-1" do %>
+                <%= image_tag "trash.svg", class: "icon-task" %>
+              <% end %>
+            </div>
+            <% end %>
+        <% end %>
+        <%= form_for @project_permission, url: project_project_permissions_path(@project), method: :post, remote: true, html: { class: "form mt-4" } do |f| %>
+          <%= f.label "Add a new member", class: "form-label" %>
+          <%= f.collection_select :user_id, User.all - @project.users, :id, :first_name, { prompt: "Select User" }, class: "form-input" %>
+
+          <%= f.hidden_field :project_id, value: @project.id %>
+          <%= render "shared/modals/footer" do %>
+            <%= f.button "Add", class: "main-btn" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

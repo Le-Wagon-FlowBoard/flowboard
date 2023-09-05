@@ -5,8 +5,10 @@ class TaskLabelsController < ApplicationController
 		labels = params[:label_ids]
 		# destroy all TaskLabels for this task
 		TaskLabel.where(task_id: @task.id).destroy_all
-		labels.each do |label|
-			TaskLabel.create(task_id: @task.id, label_id: label)
+		unless labels.nil? || labels.empty?
+			labels.each do |label|
+				TaskLabel.create(task_id: @task.id, label_id: label)
+			end
 		end
 		redirect_to project_path(@project), notice: 'Labels updated successfully'
 	end

@@ -50,6 +50,7 @@ export default class extends Controller {
                 })
                 .on('dragReleaseEnd', function (item) {
                     item.getGrid().refreshItems([item]);
+                    item.getGrid().synchronize();
 
                     // re enable clickable elements
                     item.getElement().querySelectorAll('.to-disable-btn').forEach((element) => {
@@ -59,8 +60,7 @@ export default class extends Controller {
                     const task = item.getElement().id;
                     const boardId = item.getGrid().getElement().id.split('-')[1];
                     const taskId = task.split('-')[3];
-                    const itemPosition = item.getGrid().getItem(item.getElement()).getPosition();
-                    const newPosition = calculatePos(itemPosition.top);
+                    const newPosition = calculatePos(item.getGrid().getElement(), item.getElement());
                     const project_id = Number(window.location.pathname.split('/')[2]);
                     let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
                     fetch(`/projects/${project_id}/boards/${boardId}/tasks/${taskId}`, {
@@ -90,8 +90,10 @@ export default class extends Controller {
             dragHandle: '.board-column-header'
         });
 
-        function calculatePos(pos) {
-            return Math.ceil(pos / 48);
+        function calculatePos(parent, item) {
+            let children = parent.children;
+            let itemIndex = Array.prototype.indexOf.call(children, item);
+            return itemIndex;
         }
     }
 
