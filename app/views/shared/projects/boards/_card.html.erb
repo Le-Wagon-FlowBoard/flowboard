@@ -10,13 +10,12 @@
           </div>
         </div>
         <div class="board-column-footer">
-          <div class="bg-background px-3 rounded-2 py-2 w-100 add-task-btn" id="add-task-<%= board.id %>" data-action="click->muuri#addTask" data-board-id="<%= board.id %>">
+          <div class="bg-background px-3 rounded-2 py-2 w-100 add-task-btn" id="add-task-<%= board.id %>" data-muuri-target="infos-<%= board.id %>" data-action="click->muuri#showForm" data-board-id="<%= board.id %>">
             Add Task
           </div>
+          <%= render "shared/projects/tasks/create", project: @project, board: board, task: @task %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-
-
