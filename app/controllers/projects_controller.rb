@@ -7,14 +7,15 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find_by_id(params[:id])
     @board = Board.new
     @boards = Board.where(project_id: @project.id)
     @label = Label.new
     @labels = Label.where(project_id: @project.id)
     @task = Task.new
     @tasks = Task.where(project_id: @project.id)
-
   end
+
 
   def new
   end
