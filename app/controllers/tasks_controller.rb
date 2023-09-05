@@ -28,7 +28,17 @@ class TasksController < ApplicationController
     @task = Task.find_by_id(params[:task_id])
     @board = @task.board
     if @task.update(task_params)
-      redirect_to project_path(@board.project), notice: 'Task updated successfully'
+      redirect_to project_path(@board.project), notice: 'Deadline updated successfully'
+    else
+      render json: { status: @task.errors.full_messages }
+    end
+  end
+
+  def update_assignee
+    @task = Task.find_by_id(params[:task_id])
+    @board = @task.board
+    if @task.update(task_params)
+      redirect_to project_path(@board.project), notice: 'Assignee updated successfully'
     else
       render json: { status: @task.errors.full_messages }
     end
@@ -36,7 +46,6 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find_by_id(params[:task_id])
-    @board = @task.board
     if @task.update(task_params)
       render json: { status: 'Task updated successfully' }
     else

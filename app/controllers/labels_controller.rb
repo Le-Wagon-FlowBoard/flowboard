@@ -32,14 +32,19 @@ class LabelsController < ApplicationController
 		if @label.update(label_params)
 			redirect_to project_path(@project), notice: 'Label updated successfully'
 		else
-			render 'edit'
+			redirect_to project_path(@project), notice: 'Label cannot be updated'
 		end
 	end
 
 	def destroy
 		@label = Label.find(params[:id])
-		@label.destroy
-		redirect_to labels_path
+		# if label is referenced anywhere, it cannot be deleted
+		if TaskLabel.where(label_id: @label.id).present?
+			redirect_to project_path(@label.project), notice: 'Label cannot be deleted as it is used in another task'
+		else
+			@label.destroy
+			redirect_to project_path(@label.project), notice: 'Label deleted successfully'
+		end
 	end
 
 	private
