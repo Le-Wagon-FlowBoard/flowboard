@@ -20,7 +20,8 @@ export default class extends Controller {
         },
       }
     )
-    console.log("Subscribed to ChatChannel for project", this.projectIdValue)
+    let offcanvasBody = document.querySelector(".offcanvas-body")
+    offcanvasBody.scrollTop = offcanvasBody.scrollHeight
   }
 
   send() {

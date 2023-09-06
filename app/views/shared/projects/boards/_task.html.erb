@@ -4,8 +4,7 @@
             <%= task.deadline.strftime("%d %b %Y") if task.deadline %>
             <div class="d-flex">
                 <% task.assignees.each do |assignee| %>
-                    <%# display first letter of first and last name %>
-                    <div class="rounded-circle bg-dark-purple p-1 text-center text-dark-grey <%= task.deadline ? 'ms-2' : ''%> mb-2 assignee">
+                    <div class="rounded-circle bg-dark-purple p-1 text-center text-dark-grey mb-2 assignee <%= 'ms-2' if task.deadline %><%= 'me-2' if !task.deadline %>">
                         <%= assignee.user.first_name.split("").first + assignee.user.last_name.split("").first %>
                     </div>
                 <% end %>
