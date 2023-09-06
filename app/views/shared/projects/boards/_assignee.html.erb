@@ -7,21 +7,20 @@
       <% end %>
       <%= render "shared/modals/content" do %>
         <%= form_tag task_assignees_path(task), method: :post, remote: true, class: "form p-2" do %>
-          <% @project.users.each do |user| %>
+          <% users = @project.users + [current_user] %>
+          <% users.each do |user| %>
             <div class="d-flex justify-content-between align-items-center my-2">
-              <label>
-                <%= check_box_tag "user_ids[]", user.id, task.assignees.include?(user), class: "form-check-input" %>
-                <%= user.first_name %> <%= user.last_name %>
-
-              </label>
+              <div class="p-2 my-2 rounded-2">
+                <input type="checkbox" name="user_ids[]" id="user_ids_<%= user.id %>" value="<%= user.id %>" class="form-check-input label-checkbox" <%= "checked" if task.assignees.find_by(user_id: user.id) %>>
+                <%= label_tag "user_ids_#{user.id}", "#{user.first_name} #{user.last_name} (#{user.email})", class: "form-check-label" %>
+              </div>
             </div>
           <% end %>
-
-          <%= submit_tag 'Mettre à jour', class: 'btn btn-primary' %>
-              <%= hidden_field_tag "task_id", task.id %>
-
+          <%= hidden_field_tag "task_id", task.id %>
+          <%= render "shared/modals/footer" do %>
+            <%= submit_tag "Update Assignees", class: "main-btn", data: { bs_dismiss: "modal" } %>
+          <% end %>
         <% end %>
-
       <% end %>
     </div>
   </div>

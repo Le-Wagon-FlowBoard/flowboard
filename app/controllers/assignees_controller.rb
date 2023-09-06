@@ -12,13 +12,17 @@ class AssigneesController < ApplicationController
 	end
 
 	def create
-
-		@assignee = Assignee.new(assignee_params)
-		if @assignee.save
-			redirect_to assignees_path, notice: "Assignee was successfully created."
-		else
-			render :new, notice: "Assignee was not created."
+		@task = Task.find(params[:task_id])
+		@project = @task.board.project
+		assignees = params[:user_ids]
+		# destroy all TaskLabels for this task
+		Assignee.where(task_id: @task.id).destroy_all
+		unless assignees.nil? || assignees.empty?
+			assignees.each do |assignee|
+				Assignee.create(task_id: @task.id, user_id: assignee)
+			end
 		end
+		redirect_to project_path(@project), notice: 'Assignees updated successfully'
 	end
 
 	def edit
@@ -43,6 +47,6 @@ class AssigneesController < ApplicationController
 	private
 
 	def assignee_params
-		params.require(:assignee).permit(:task_id, user_ids: [])
+		params.require(:label).permit(:name, :task_id, :user_id)
 	end
 end
