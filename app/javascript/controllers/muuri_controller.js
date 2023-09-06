@@ -175,45 +175,37 @@ export default class extends Controller {
         const iconsContainer = document.createElement("div");
         iconsContainer.classList.add("icons", "bg-background", "p-2");
         iconsContainer.style.visibility = "hidden";
-        // <div class="icons bg-background p-2">
-        //     <%= image_tag "clock.svg", class: "to-disable-btn icon-task" %>
-        //     <%= image_tag "label.svg", class: "to-disable-btn icon-task" %>
-        //     <%= image_tag "user.svg", class: "to-disable-btn icon-task" %>
-        //     <%= image_tag "infos.svg", class: "to-disable-btn icon-task" %>
-        // </div>
 
-        // .icons {
-        	// visibility: hidden;
-        	// position: absolute;
-        	// top: 50%;
-        	// right: 10px;
-        	// transform: translateY(-50%);
-        	// display: flex;
-        	// gap: 10px;
-        	// z-index: 1;
-        // }
-        //
-        // .task-container:hover .icons {
-        	// visibility: visible;
-        // }
         const clockIcon = document.createElement("img");
-        clockIcon.src = "/assets/clock.svg";
+        clockIcon.src = "https://svgshare.com/i/xKJ.svg";
         clockIcon.classList.add("to-disable-btn", "icon-task");
+        // add data-bs-toggle="modal" data-bs-target="#addDeadLineModal-#{task.id}" to open the modal
+        clockIcon.setAttribute("data-bs-toggle", "modal");
+        clockIcon.setAttribute("data-bs-target", `#addDeadLineModal-${taskId}`);
+        clockIcon.id = `addDeadLineModalButton`;
         iconsContainer.appendChild(clockIcon);
 
         const labelIcon = document.createElement("img");
-        labelIcon.src = "/assets/label.svg";
+        labelIcon.src = "https://svgshare.com/i/xKV.svg";
         labelIcon.classList.add("to-disable-btn", "icon-task");
+        labelIcon.setAttribute("data-bs-toggle", "modal");
+        labelIcon.setAttribute("data-bs-target", `#addLabelModal-${taskId}`);
+        labelIcon.id = `addLabelModalButton`;
         iconsContainer.appendChild(labelIcon);
 
         const userIcon = document.createElement("img");
-        userIcon.src = "/assets/user.svg";
+        userIcon.src = "https://svgshare.com/i/xJ2.svg";
         userIcon.classList.add("to-disable-btn", "icon-task");
+        userIcon.setAttribute("data-bs-toggle", "modal");
+        userIcon.setAttribute("data-bs-target", `#addAssigneeModal-${taskId}`);
+        userIcon.id = `addAssigneeModalButton`;
         iconsContainer.appendChild(userIcon);
 
         const infosIcon = document.createElement("img");
-        infosIcon.src = "/assets/infos.svg";
+        infosIcon.src = "https://svgshare.com/i/xJ_.svg";
         infosIcon.classList.add("to-disable-btn", "icon-task");
+        infosIcon.setAttribute("data-bs-toggle", "modal");
+        infosIcon.setAttribute("data-bs-target", `#taskInfosModal-${taskId}`);
         iconsContainer.appendChild(infosIcon);
 
         taskContainer.addEventListener("mouseenter", () => {
@@ -232,6 +224,36 @@ export default class extends Controller {
             return columnGrid.getElement().id === `board-${boardId}`;
         });
         grid.add(taskElement);
+
+        fetch(`/add_label_modal?task_id=${taskId}`)
+            .then((response) => response.text())
+            .then((response) => {
+                const body = document.querySelector("body");
+                body.insertAdjacentHTML("beforeend", response);
+            })
+            .catch((error) => {
+                console.error("Error fetching label modal:", error);
+            });
+
+        fetch(`/add_deadline_modal?task_id=${taskId}`)
+            .then((response) => response.text())
+            .then((response) => {
+                const body = document.querySelector("body");
+                body.insertAdjacentHTML("beforeend", response);
+            })
+            .catch((error) => {
+                console.error("Error fetching deadline modal:", error);
+            });
+            
+        fetch(`/add_assignee_modal?task_id=${taskId}`)
+            .then((response) => response.text())
+            .then((response) => {
+                const body = document.querySelector("body");
+                body.insertAdjacentHTML("beforeend", response);
+            })
+            .catch((error) => {
+                console.error("Error fetching assignee modal:", error);
+            });
 
         setTimeout(() => {
             taskElement.scrollIntoView({

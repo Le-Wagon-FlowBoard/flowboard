@@ -3,7 +3,7 @@
     <div class="modal-opened-content">
       <%= render "shared/modals/header" do %>
         <h5 class="modal-title" id="addLabelModalLabel">Add labels to the task <%= task.name %></h5>
-        <%= image_tag "plus.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
+        <%= image_tag "https://svgshare.com/i/xJ1.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
       <% end %>
       <%= render "shared/modals/content" do %>
         <%= form_tag task_task_labels_path(task), method: :post, remote: true, class: "form p-2" do %>

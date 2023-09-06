@@ -5,7 +5,6 @@ class Task < ApplicationRecord
   has_many :assignees, dependent: :destroy
   has_many :subtask_groups, dependent: :destroy
   has_many :task_labels, dependent: :destroy
-  has_many :deadlines, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 3, maximum: 25 }
   validates :description, length: { maximum: 250 }
