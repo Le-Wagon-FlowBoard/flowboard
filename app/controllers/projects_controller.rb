@@ -20,6 +20,8 @@ class ProjectsController < ApplicationController
     @project_permissions = @project.project_permissions
     @message = Message.new
     @messages = Message.where(project_id: @project.id)
+    @assignee = Assignee.new
+
   end
 
 

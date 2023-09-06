@@ -176,3 +176,16 @@ input#Color_field_button {
 	padding: 1rem;
 	margin-bottom: 1rem;
 }
+
+.assignee {
+	border-radius: 50%;
+	height: 30px;
+	width: 30px;
+	object-fit: cover;
+}
+
+.alert-info {
+	color: $light-grey;
+	background-color: $dark-background;
+	border-color: $purple;
+}

@@ -1,0 +1,27 @@
+<div class="modal fade" id="showAssigneeModal-<%= task.id %>" tabindex="-1" aria-labelledby="showAssigneeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-opened-content">
+      <%= render "shared/modals/header" do %>
+        <h5 class="modal-title" id="showAssigneeModalLabel">Add assignees to the task <%= task.name %></h5>
+        <%= image_tag "https://svgshare.com/i/xJ1.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
+      <% end %>
+      <%= render "shared/modals/content" do %>
+        <%= form_tag task_assignees_path(task), method: :post, remote: true, class: "form p-2" do %>
+          <% users = @project.users + [current_user] %>
+          <% users.each do |user| %>
+            <div class="d-flex justify-content-between align-items-center my-2">
+              <div class="p-2 my-2 rounded-2">
+                <input type="checkbox" name="user_ids[]" id="user_ids_<%= user.id %>" value="<%= user.id %>" class="form-check-input label-checkbox" <%= "checked" if task.assignees.find_by(user_id: user.id) %>>
+                <%= label_tag "user_ids_#{user.id}", "#{user.first_name} #{user.last_name} (#{user.email})", class: "form-check-label" %>
+              </div>
+            </div>
+          <% end %>
+          <%= hidden_field_tag "task_id", task.id %>
+          <%= render "shared/modals/footer" do %>
+            <%= submit_tag "Update Assignees", class: "main-btn", data: { bs_dismiss: "modal" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
