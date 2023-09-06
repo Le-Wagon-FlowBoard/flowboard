@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   resources :projects do
+    resources :messages
     resources :labels
     resources :project_permissions
     resources :boards do
@@ -18,4 +19,5 @@ Rails.application.routes.draw do
   get "/add_label_modal", to: "pages#add_label_modal", as: "add_label_modal"
   get "/add_deadline_modal", to: "pages#add_deadline_modal", as: "add_deadline_modal"
   get "/add_assignee_modal", to: "pages#add_assignee_modal", as: "add_assignee_modal"
+  get "/message", to: "pages#message", as: "message"
 end
