@@ -8,6 +8,7 @@
       <%= render "shared/modals/content" do %>
         <%= form_for task, url: task_deadline_path(task), method: :patch, remote: true, html: { class: "form" } do |f| %>
           <%= f.datetime_field :deadline, class: "form-input" %>
+
           <%= hidden_field_tag "task_id", task.id %>
           <%= render "shared/modals/footer" do %>
             <%= submit_tag "Update DeadLine", class: "main-btn" %>
