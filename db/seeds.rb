@@ -25,6 +25,8 @@ User.destroy_all
 puts 'Creating users...'
 User.create!(email: 'roger@pizzeria.com', password: 'password', first_name: 'Roger', last_name: 'Smith')
 User.create!(email: 'julien@pizzeria.com', password: 'password', first_name: 'Julien', last_name: 'Pineau')
+User.create!(email: 'amelie@belle-piscines.fr', password: 'password', first_name: 'Amélie', last_name: 'Dupont')
+User.create!(email: 'aurelien@carrent.fr', password: 'password', first_name: 'Aurélien', last_name: 'Lambert')
 puts 'Users created!'
 
 # Projects
