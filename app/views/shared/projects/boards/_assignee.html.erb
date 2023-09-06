@@ -1,0 +1,28 @@
+<div class="modal fade" id="showAssigneeModal-<%= task.id %>" tabindex="-1" aria-labelledby="showAssigneeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-opened-content">
+      <%= render "shared/modals/header" do %>
+        <h5 class="modal-title" id="showAssigneeModalLabel">Add assignees to the task <%= task.name %></h5>
+        <%= image_tag "plus.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
+      <% end %>
+      <%= render "shared/modals/content" do %>
+        <%= form_tag task_assignees_path(task), method: :post, remote: true, class: "form p-2" do %>
+          <% @project.users.each do |user| %>
+            <div class="d-flex justify-content-between align-items-center my-2">
+              <label>
+                <%= check_box_tag "user_ids[]", user.id, task.assignees.include?(user), class: "form-check-input" %>
+                <%= user.first_name %> <%= user.last_name %>
+
+              </label>
+            </div>
+          <% end %>
+
+          <%= submit_tag 'Mettre à jour', class: 'btn btn-primary' %>
+              <%= hidden_field_tag "task_id", task.id %>
+
+        <% end %>
+
+      <% end %>
+    </div>
+  </div>
+</div>

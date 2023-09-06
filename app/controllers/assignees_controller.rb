@@ -12,11 +12,12 @@ class AssigneesController < ApplicationController
 	end
 
 	def create
+
 		@assignee = Assignee.new(assignee_params)
 		if @assignee.save
-			redirect_to assignees_path
+			redirect_to assignees_path, notice: "Assignee was successfully created."
 		else
-			render :new
+			render :new, notice: "Assignee was not created."
 		end
 	end
 
@@ -25,13 +26,13 @@ class AssigneesController < ApplicationController
 	end
 
 	def update
-		@assignee = Assignee.find(params[:id])
-		if @assignee.update(assignee_params)
-			redirect_to assignees_path
-		else
-			render :edit
-		end
-	end
+   @assignee = Assignee.find(params[:id])
+    if @assignee.update(assignee_params)
+      redirect_to assignee_path(@assignee)
+    else
+      render :edit
+    end
+  end
 
 	def destroy
 		@assignee = Assignee.find(params[:id])
@@ -42,6 +43,6 @@ class AssigneesController < ApplicationController
 	private
 
 	def assignee_params
-		params.require(:assignee).permit(:name)
+		params.require(:assignee).permit(:task_id, user_ids: [])
 	end
 end

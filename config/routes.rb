@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   resources :tasks do
     resources :task_labels, only: [:create, :new]
-    resources :assignee, only: [:create, :new]
+    resources :assignees, only: [:create, :new]
     patch 'deadline', to: 'tasks#update_deadline', as: 'deadline'
   end
 end

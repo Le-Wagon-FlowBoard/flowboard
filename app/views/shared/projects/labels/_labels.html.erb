@@ -28,9 +28,9 @@
               <%= render "shared/modals/footer" do %>
                 <%= f.button "Update Label", class: "main-btn" %>
               <% end %>
-            <% end %>
             <%= form_for label, url: project_label_path(@project, label), method: :delete, remote: true, html: { class: "form" } do |f| %>
                 <%= f.button "Delete Label", class: "main-btn" %>
+            <% end %>
             <% end %>
           <% end %>
         <% else %>
