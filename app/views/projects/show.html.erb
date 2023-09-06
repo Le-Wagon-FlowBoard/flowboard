@@ -1,9 +1,13 @@
+<!-- Facebook Open Graph data -->
+<% content_for :meta_title, "#{@project.name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @project.description %>
+
+<!-- Render Appp -->
 <%= render 'shared/navbar' %>
 
 <%= render 'shared/projects/boards/card', boards: @boards %>
 
 <%= render 'shared/projects/boards/create', project: @project, board: @board  %>
-
 
 
 <% if @board.errors.any? %>
