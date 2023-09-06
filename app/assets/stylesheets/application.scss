@@ -154,3 +154,9 @@ input#Color_field_button {
 	width: 30px;
 	object-fit: cover;
 }
+
+.alert-info {
+	color: $light-grey;
+	background-color: $dark-background;
+	border-color: $purple;
+}
