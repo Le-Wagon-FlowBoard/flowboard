@@ -15,12 +15,12 @@
                 <%= task.name %>
             </div>
             <div class="icons bg-background p-2 h-100 d-flex align-items-center pe-0">
-                <%= image_tag "clock.svg", class: "to-disable-btn icon-task", data: { bs_toggle: "modal", bs_target: "#addDeadLineModal-#{task.id}" }, id: "addDeadLineModalButton"%>
+                <%= image_tag "https://svgshare.com/i/xKJ.svg", class: "to-disable-btn icon-task", data: { bs_toggle: "modal", bs_target: "#addDeadLineModal-#{task.id}" }, id: "addDeadLineModalButton"%>
                 <% if task.board.project.labels.any? %>
-                    <%= image_tag "label.svg", class: "to-disable-btn icon-task", data: { bs_toggle: "modal", bs_target: "#addLabelModal-#{task.id}" }, id: "addLabelModalButton"%>
+                    <%= image_tag "https://svgshare.com/i/xKV.svg", class: "to-disable-btn icon-task", data: { bs_toggle: "modal", bs_target: "#addLabelModal-#{task.id}" }, id: "addLabelModalButton"%>
                 <% end %>
-                <%= image_tag "user.svg", class: "to-disable-btn icon-task" %>
-                <%= image_tag "infos.svg", class: "to-disable-btn icon-task" %>
+                <%= image_tag "https://svgshare.com/i/xJ2.svg", class: "to-disable-btn icon-task" %>
+                <%= image_tag "https://svgshare.com/i/xJ_.svg", class: "to-disable-btn icon-task" %>
             </div>
         </div>
     </div>

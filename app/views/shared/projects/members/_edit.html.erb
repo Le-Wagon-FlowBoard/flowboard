@@ -3,7 +3,7 @@
     <div class="modal-opened-content">
       <%= render "shared/modals/header" do %>
         <h5 class="modal-title" id="createLabelModalLabel">Manage project members</h5>
-        <%= image_tag "plus.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
+        <%= image_tag "https://svgshare.com/i/xJ1.svg", class: "icon rotate-45", data: { bs_dismiss: "modal" } %>
       <% end %>
       <%= render "shared/modals/content" do %>
       <%# list all users already allowed with a trash button to delete it %>
@@ -12,7 +12,7 @@
             <div class="d-flex justify-content-between align-items-center my-2">
               <%= permission.user.first_name %> <%= permission.user.last_name %>
               <%= f.button :submit, class: "main-btn px-3 py-1" do %>
-                <%= image_tag "trash.svg", class: "icon-task" %>
+                <%= image_tag "https://svgshare.com/i/xKH.svg", class: "icon-task" %>
               <% end %>
             </div>
             <% end %>

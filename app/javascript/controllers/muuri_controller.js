@@ -197,22 +197,22 @@ export default class extends Controller {
         	// visibility: visible;
         // }
         const clockIcon = document.createElement("img");
-        clockIcon.src = "/assets/clock.svg";
+        clockIcon.src = "https://svgshare.com/i/xKJ.svg";
         clockIcon.classList.add("to-disable-btn", "icon-task");
         iconsContainer.appendChild(clockIcon);
 
         const labelIcon = document.createElement("img");
-        labelIcon.src = "/assets/label.svg";
+        labelIcon.src = "https://svgshare.com/i/xKV.svg";
         labelIcon.classList.add("to-disable-btn", "icon-task");
         iconsContainer.appendChild(labelIcon);
 
         const userIcon = document.createElement("img");
-        userIcon.src = "/assets/user.svg";
+        userIcon.src = "https://svgshare.com/i/xJ2.svg";
         userIcon.classList.add("to-disable-btn", "icon-task");
         iconsContainer.appendChild(userIcon);
 
         const infosIcon = document.createElement("img");
-        infosIcon.src = "/assets/infos.svg";
+        infosIcon.src = "https://svgshare.com/i/xJ_.svg";
         infosIcon.classList.add("to-disable-btn", "icon-task");
         iconsContainer.appendChild(infosIcon);
 
