@@ -1,15 +1,23 @@
 class MessagesController < ApplicationController
-	def index
-		@messages = Message.all
-	end
+  def create
+    @message = Message.new(message_params)
+    @message.user = current_user
 
-	def new
-		@message = Message.new
-	end
+    if @message.save
+			redirect_to project_path(@message.project_id)
+      # send json with user_id and message object to the project channel
+      ProjectChannel.broadcast_to(
+        @message.project,
+        { data: @message }
+      )
+    else
 
-	def destroy
-		@message = Message.find(params[:id])
-		@message.destroy
-		redirect_to messages_path
-	end
+    end
+  end
+
+  private
+
+  def message_params
+    params.require(:message).permit(:project_id, :user_id, :content)
+  end
 end

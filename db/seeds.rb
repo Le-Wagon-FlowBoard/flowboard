@@ -1,21 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
-# Clear existing data
-# Clear existing data
 Assignee.destroy_all
 Subtask.destroy_all
 SubtaskGroup.destroy_all
 TaskLabel.destroy_all
 Label.destroy_all
-Message.destroy_all
 ProjectPermission.destroy_all
-Conference.destroy_all
 Task.destroy_all
 Board.destroy_all
 Project.destroy_all
@@ -114,9 +102,5 @@ puts 'Task labels created!'
 # # Assignees
 # Assignee.create!(user: User.first, task: Task.first)
 # Assignee.create!(user: User.second, task: Task.second)
-
-# # Messages
-# Message.create!(conference: Conference.first, user: User.first, content: 'Hello from user1')
-# Message.create!(conference: Conference.second, user: User.second, content: 'Hello from user2')
 
 puts 'Seeding complete!'
