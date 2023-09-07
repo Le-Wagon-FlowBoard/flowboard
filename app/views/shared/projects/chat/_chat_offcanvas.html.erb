@@ -1,0 +1,33 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="chatOffCanvas" aria-labelledby="chatOffCanvasLabel" data-controller="chat" data-chat-project-id-value="<%= @project.id %>" data-chat-user-id-value="<%= current_user.id %>">
+  <div class="offcanvas-header bg-dark-background">
+    <h5 id="chatOffCanvasLabel" class="text-light-grey mb-0">Chat with <%= @project.name %> members</h5>
+    <%= image_tag "https://svgshare.com/i/xJ1.svg", class: "icon rotate-45", data: { bs_dismiss: "offcanvas" } %>
+  </div>
+  <div class="offcanvas-body bg-dark-background" data-chat-target="messages">
+    <% previous_user_id = nil %>
+    <% @messages.each do |message| %>
+      <% enable_name = previous_user_id != message.user_id %>
+      <% previous_user_id = message.user_id %>
+      <% if message.user_id == current_user.id %>
+        <%= render "shared/projects/chat/my_message", message: message, enable_name: enable_name %>
+      <% else %>
+        <%= render "shared/projects/chat/other_message", message: message, enable_name: enable_name %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="offcanvas-footer bg-dark-background">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="input-group">
+            <div class="d-flex justify-comtent-center w-100 mb-2 gap-2">
+            <%# keyup action but for the enter key %>
+              <input type="text" class="form-input-msg" placeholder="Type a message" autocomplete="off" data-chat-target="input" data-action="keyup->chat#sendEnter">
+              <button class="main-btn" type="button" data-action="click->chat#send">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
