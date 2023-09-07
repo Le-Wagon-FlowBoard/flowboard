@@ -8,12 +8,12 @@
       <%= render "shared/modals/content" do %>
         <%= form_for @project, url: project_path(@project), method: :patch, remote: true, html: { class: "form" } do |f| %>
           <%= f.label :name, class: "form-label" %>
-          <%= f.text_field :name, class: "form-input", placeholder: "Project Name" %>
+          <%= f.text_field :name, class: "form-input", placeholder: "Project Name", autocomplete: "off" %>
           <% if @project.errors.full_messages_for(:name).any? %>
             <p class="text-danger"><%= @project.errors.full_messages_for(:name).first %></p>
           <% end %>
           <%= f.label :description, class: "form-label mt-3" %>
-          <%= f.text_area :description, class: "form-input", placeholder: "Project Description" %>
+          <%= f.text_area :description, class: "form-input", placeholder: "Project Description", autocomplete: "off" %>
           <% if @project.errors.full_messages_for(:description).any? %>
             <p class="text-danger"><%= @project.errors.full_messages_for(:description).first %></p>
           <% end %>
