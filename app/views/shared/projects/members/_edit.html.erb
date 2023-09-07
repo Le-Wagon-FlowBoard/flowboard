@@ -11,15 +11,17 @@
             <%= form_for permission, url: project_project_permission_path(@project, permission), method: :delete, remote: true do |f| %>
             <div class="d-flex justify-content-between align-items-center my-2">
               <%= permission.user.first_name %> <%= permission.user.last_name %>
-              <%= f.button :submit, class: "main-btn px-3 py-1" do %>
-                <%= image_tag "https://svgshare.com/i/xKH.svg", class: "icon-task" %>
+              <% if permission.user != current_user %>
+                <%= f.button :submit, class: "main-btn px-3 py-1" do %>
+                  <%= image_tag "https://svgshare.com/i/xKH.svg", class: "icon-task" %>
+                <% end %>
               <% end %>
             </div>
             <% end %>
         <% end %>
         <%= form_for @project_permission, url: project_project_permissions_path(@project), method: :post, remote: true, html: { class: "form mt-4" } do |f| %>
           <%= f.label "Add a new member", class: "form-label" %>
-          <%= f.collection_select :user_id, (User.all - @project.users) - [current_user], :id, :first_name, { prompt: "Select User" }, class: "form-input" %>
+          <%= f.collection_select :user_id, (User.all - @project.users) - [@project.user], :id, :first_name, { prompt: "Select User" }, class: "form-input" %>
 
           <%= f.hidden_field :project_id, value: @project.id %>
           <%= render "shared/modals/footer" do %>
