@@ -41,7 +41,7 @@ class LabelsController < ApplicationController
 		@label = Label.find(params[:id])
 		# if label is referenced anywhere, it cannot be deleted
 		if TaskLabel.where(label_id: @label.id).present?
-			redirect_to project_path(@label.project), notice: 'Label cannot be deleted as it is used in another task'
+			redirect_to project_path(@label.project), notice: 'Label cannot be deleted as it is used in a task'
 		else
 			@label.destroy
 			redirect_to project_path(@label.project), notice: 'Label deleted successfully'

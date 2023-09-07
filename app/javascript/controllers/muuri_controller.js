@@ -6,8 +6,6 @@ export default class extends Controller {
     static targets = ["infos", "form", "card", "input"]
 
     connect() {
-
-      console.log("Muuri controller connected")
         var dragContainer = document.querySelector('.drag-container');
 
         // Board Draggables
@@ -126,7 +124,6 @@ export default class extends Controller {
               })
                   .then((response) => response.json())
                   .then((response) => {
-                    console.log(response)
                       this.createTaskElement(boardId, response.id, taskName);
                       document.getElementById(`form-task-${boardId}`).value = "";
                   })
