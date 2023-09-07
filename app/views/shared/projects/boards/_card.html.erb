@@ -4,7 +4,9 @@
   <% boards.each do |board| %>
     <div class="board-column py-3">
       <div class="board-column-container">
-        <div class="board-column-header"><%= board.name %></div>
+        <div class="board-column-header">
+        <%= board.name %>
+        <%= image_tag "https://svgshare.com/i/xJ_.svg", class: "to-disable-btn icon-task", data: { data_controller: "popover", data_bs_toggle: "popover", data_bs_trigger: "hover", data_bs_placement: "right", title: "Description", data_bs_content: "#{board.description}" } %></div>
         <div class="board-column-content-wrapper">
           <div class="board-column-content" id="board-<%= board.id %>" >
             <% board.tasks.each do |task| %>
