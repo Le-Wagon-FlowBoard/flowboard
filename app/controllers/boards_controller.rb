@@ -34,10 +34,11 @@ class BoardsController < ApplicationController
 	end
 
 	def update
+    
 		@board = Board.find_by(id: params[:id])
-		@board.title = params[:board][:title]
+
+		@board.name = params[:board][:name]
 		@board.save
-		redirect_to board_path(@board)
 	end
 
 	def destroy

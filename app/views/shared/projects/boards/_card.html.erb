@@ -3,8 +3,16 @@
 
   <% boards.each do |board| %>
     <div class="board-column py-3">
-      <div class="board-column-container">
-        <div class="board-column-header"><%= board.name %></div>
+      <div class="board-column-container" data-controller="edit-board">
+        <div class="board-column-header p-0"  >
+          <div data-edit-board-target = "card" data-action="click->edit-board#displayForm">
+            <div data-edit-board-target = "infos" class="px-4">
+            
+              <%= board.name %>
+            </div>
+            <%= render "shared/projects/boards/form", project: @project, board: board %>
+          </div>
+        </div>
         <div class="board-column-content-wrapper">
           <div class="board-column-content" id="board-<%= board.id %>" >
             <% board.tasks.each do |task| %>
@@ -28,7 +36,6 @@
     <%= render "shared/projects/labels/add", task: task %>
     <%= render "shared/projects/boards/deadline", task: task, board: board %>
     <%= render "shared/projects/boards/assignee", task: task, board: board %>
-
   <% end %>
 <% end %>
 
