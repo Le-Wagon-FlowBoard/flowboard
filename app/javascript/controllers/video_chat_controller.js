@@ -4,7 +4,6 @@ export default class extends Controller {
     static values = { username: String }
 
     connect() {
-        console.log(this.usernameValue)
     }
 
     open() {
