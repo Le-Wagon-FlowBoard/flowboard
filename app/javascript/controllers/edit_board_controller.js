@@ -5,10 +5,6 @@ export default class extends Controller {
 
   static targets = ["infos", "form", "card"]
   connect() {
-
-    console.log("edit board controller connected")
-    console.log(this.infosTarget)
-    console.log(this.formTarget)
   }
 
   update(event) {
