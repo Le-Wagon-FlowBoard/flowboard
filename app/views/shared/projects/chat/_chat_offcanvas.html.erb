@@ -1,7 +1,10 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="chatOffCanvas" aria-labelledby="chatOffCanvasLabel" data-controller="chat" data-chat-project-id-value="<%= @project.id %>" data-chat-user-id-value="<%= current_user.id %>">
   <div class="offcanvas-header bg-dark-background">
     <h5 id="chatOffCanvasLabel" class="text-light-grey mb-0">Chat with <%= @project.name %> members</h5>
-    <%= image_tag "https://svgshare.com/i/xJ1.svg", class: "icon rotate-45", data: { bs_dismiss: "offcanvas" } %>
+    <div data-controller="video-chat">
+      <%= image_tag "https://svgshare.com/i/xLA.svg", class: "icon", data: { action: "click->video-chat#open", bs_dismiss: "offcanvas" } %>
+      <%= image_tag "https://svgshare.com/i/xJ1.svg", class: "icon rotate-45", data: { bs_dismiss: "offcanvas" } %>
+    </div>
   </div>
   <div class="offcanvas-body bg-dark-background" data-chat-target="messages">
     <% previous_user_id = nil %>
