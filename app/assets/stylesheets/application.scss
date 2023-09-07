@@ -39,6 +39,20 @@
 	}
 }
 
+.form-input-msg {
+	border-radius: 10px;
+	border: 1px solid $purple;
+	background-color: $background;
+	color: $light-grey;
+	font-size: 1rem;
+	padding: 0.6rem 1.2rem;
+	text-decoration: none;
+	width: 100%;
+	&:focus {
+		outline: none;
+	}
+}
+
 .project-card {
 	transition: background-color 0.3s ease;
 	&:hover {
@@ -146,4 +160,32 @@ input#Color_field_button {
 	&:focus {
 		outline: none;
 	}
+}
+
+
+.my-message {
+	background-color: $background;
+	border-radius: 10px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+.other-message {
+	background-color: $background-shade;
+	border-radius: 10px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+.assignee {
+	border-radius: 50%;
+	height: 30px;
+	width: 30px;
+	object-fit: cover;
+}
+
+.alert-info {
+	color: $light-grey;
+	background-color: $dark-background;
+	border-color: $purple;
 }

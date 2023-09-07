@@ -2,7 +2,6 @@ class Project < ApplicationRecord
   belongs_to :user
 
   has_many :boards, dependent: :destroy
-  has_many :conferences, dependent: :destroy
   has_many :project_permissions, dependent: :destroy
   has_many :labels, dependent: :destroy
   has_many :users, through: :project_permissions

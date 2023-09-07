@@ -1,67 +1,207 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The change you wanted was rejected (422)</title>
+  <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="UTF-8">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
+
+html, body {
     margin: 0;
-  }
+    font-family: Comfortaa;
+    font-size: 5vmin;
+    background-color: #020402;
+}
+.error {
+    position: relative;
+    width: 100%;
+    height: 13vh;
+    text-align: center;
+    font-size: 12vmin;
+    font-family: Abril Fatface;
+    color: #A76D60;
+}
+.number {
+    position: relative;
+    width: 100%;
+    height: 30vmin;
+    text-align: center;
+    font-size: 22vmin;
+    font-family: Abril Fatface;
+    color: #601700;
+}
+.smiley {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    width: 100%;
+    text-align: center;
+    font-size: 8vmin;
+}
+.message {
+    position: relative;
+    width: 80%;
+    height: 20vh;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    color: #00A676;
+    font-family: Anonymous Pro;
+}
+.textData {
+    position: relative;
+    width: 100%;
+    border-right: solid 2px grey;
+    animation: blink forwards 0.65s infinite;
+    -webkit-animation: blink forwards 0.65s infinite;
+}
+#leftArm, #rightArm, #face {
+    display: inline-block;
+    transform: rotate(0deg);
+    color: #00A676;
+}
+#face {
+    color: #00A676;
+}
+@keyframes blink {
+    0% {
+        border-right: solid 2px rgba(105,105,105,1);
+    }
+    33% {
+        border-right: solid 2px rgba(105,105,105,1);
+    }
+    34% {
+        border-right: solid 2px rgba(105,105,105,0);
+    }
+    66% {
+        border-right: solid 2px rgba(105,105,105,0);
+    }
+    67% {
+        border-right: solid 2px rgba(105,105,105,1);
+    }
+    100% {
+        border-right: solid 2px rgba(105,105,105,1);
+    }
+}
+@keyframes leftarm{
+	10%{
+        transform: rotate(-20deg);
+	}
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+	30%{
+		transform: rotate(-20deg);
+	}
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+	50%{
+		transform: rotate(0deg);
+	}
+}
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+@keyframes rightarm{
+	10%{
+		transform: rotate(20deg);
+	}
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+	30%{
+		transform: rotate(20deg);
+	}
+
+	50%{
+		transform: rotate(0deg);
+	}
+}
+
   </style>
 </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/422.html -->
-  <div class="dialog">
-    <div>
-      <h1>The change you wanted was rejected.</h1>
-      <p>Maybe you tried to change something you didn't have access to.</p>
+<body>
+  <div class="container">
+    <div class="error">ERROR<br></div>
+    <div class="number">500</div>
+    <div class="message">
+        <span class="textData" data-to-animate='[" Looks like you messed it al" , " We are sorr" , " Clearly something is broken! We will fix it soon."]'>Ooops!! </span>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <div class="smiley">
+      <span id="leftArm">¯\_</span>
+      <span id="face">(ツ)</span>
+      <span id="rightArm">_/¯</span>
+    </div>
   </div>
+  <script>
+    if (window.addEventListener) // W3C standard
+{
+  window.addEventListener('load', animate, false); // NB **not** 'onload'
+}
+else if (window.attachEvent) // Microsoft
+{
+  window.attachEvent('onload', animate);
+}
+
+var delta = 800;
+var forwardDelta = 100;
+var backwardDetla = 75;
+var switchDelta = 800;
+
+function animate() {
+    var element = document.getElementsByClassName("textData")[0];
+    var elementData = JSON.parse(element.getAttribute("data-to-animate"));
+    var originalText = element.innerText;
+    moveLetters(element, originalText, elementData, 0, 0, true);
+}
+
+function moveLetters(element, originalText, elementData, elementDataIndex, currentDataIndex, directionForwards) {
+    switchDirection = false;
+    updateText(element, originalText + elementData[elementDataIndex].substring(0, currentDataIndex));
+    nextIndex = -1;
+    delta = 0;
+    if(directionForwards) {
+        if(currentDataIndex == elementData[elementDataIndex].length) {
+            nextIndex = elementData[elementDataIndex].length - 1;
+            directionForwards = !directionForwards;
+            delta = switchDelta;
+            if(elementDataIndex == elementData.length - 1) {
+                setTimeout(() => {
+                    animateShrug();
+                }, 500);
+                return;
+            }
+        }
+        else {
+            nextIndex = currentDataIndex + 1;
+            delta = forwardDelta;
+        }
+    }
+    else {
+        if(currentDataIndex == 0) {
+            nextIndex = 0;
+            directionForwards = !directionForwards;
+            delta = switchDelta;
+            elementDataIndex = elementDataIndex + 1;
+        }
+        else {
+            nextIndex = currentDataIndex - 1;
+            delta = backwardDetla;
+        }
+    }
+
+    setTimeout(() => {
+        moveLetters(element, originalText, elementData, elementDataIndex, nextIndex, directionForwards);
+    }, delta);
+}
+
+function updateText(element, text) {
+    element.innerText = text;
+}
+
+function animateShrug() {
+
+    document.getElementById("leftArm").style.animation = "leftarm 5s";
+    document.getElementById("leftArm").style.WebkitAnimation = "leftarm 5s";
+    document.getElementById("rightArm").style.animation = "rightarm 5s";
+    document.getElementById("rightArm").style.WebkitAnimation = "rightarm 5s";
+
+}
+  </script>
 </body>
 </html>
