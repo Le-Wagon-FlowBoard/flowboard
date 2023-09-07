@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+
     @project = Project.find_by_id(params[:id])
     @board = Board.new
     @boards = Board.where(project_id: @project.id)
@@ -60,7 +61,11 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
-    @project = Project.find_by_id(params[:id])
+    if Project.find_by_id(params[:id])
+      @project = Project.find_by_id(params[:id])
+    else
+      @project = Project.find_by_id(params[:project_id])
+    end
   end
 
   def project_params

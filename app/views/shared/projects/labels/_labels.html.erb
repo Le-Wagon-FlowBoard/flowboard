@@ -14,13 +14,13 @@
         <% if @project.labels.any? %>
           <% @project.labels.each do |label| %>
             <%= form_for label, url: project_label_path(@project, label), method: :patch, remote: true, html: { class: "form" } do |f| %>
-              <%= f.label :name, class: "form-label" %>
-              <%= f.text_field :name, class: "form-input", placeholder: "Name Label", value: label.name %>
+              <%= f.label :name, class: "mt-4 form-label" %>
+              <%= f.text_field :name, class: "form-input", placeholder: "Name Label", value: label.name, autocomplete: "off" %>
               <% if label.errors.full_messages_for(:name).any? %>
                 <p class="text-danger"><%= label.errors.full_messages_for(:name).first %></p>
               <% end %>
               <%= f.label :color, class: "form-label mt-3" %>
-              <%= f.color_field :color, id: "Color_field_button", class: "form-input w-50", placeholder: "Color Label", value: label.color %>
+              <%= f.color_field :color, id: "Color_field_button", class: "form-input w-100", placeholder: "Color Label", value: label.color %>
               <% if label.errors.full_messages_for(:color).any? %>
                 <p class="text-danger"><%= label.errors.full_messages_for(:color).first %></p>
               <% end %>
@@ -28,9 +28,9 @@
               <%= render "shared/modals/footer" do %>
                 <%= f.button "Update Label", class: "main-btn" %>
               <% end %>
-            <%= form_for label, url: project_label_path(@project, label), method: :delete, remote: true, html: { class: "form" } do |f| %>
-                <%= f.button "Delete Label", class: "main-btn" %>
             <% end %>
+            <%= form_for label, url: project_label_path(@project, label), method: :delete, remote: true, html: { class: "form" } do |f| %>
+                <%= f.button "Delete Label", class: "main-btn minus-margin modal-footer" %>
             <% end %>
           <% end %>
         <% else %>

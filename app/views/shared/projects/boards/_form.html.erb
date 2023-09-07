@@ -1,0 +1,11 @@
+<%= form_for [project, board],
+  html: {
+    class: "d-none",
+    data: {
+      edit_board_target: "form",
+      action: "keyup->edit-board#update"
+    }
+  } do |f|
+%>
+  <%= f.text_field :name, class: " bg-dark-background rounded-2 align-items-center text-light-grey w-100 px-4 border-color-purple m-0"%>
+<% end %>

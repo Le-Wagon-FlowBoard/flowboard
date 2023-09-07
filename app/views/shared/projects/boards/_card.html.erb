@@ -2,11 +2,19 @@
 <div class="board mx-3" data-controller="muuri">
 
   <% boards.each do |board| %>
-    <div class="board-column py-3" >
-      <div class="board-column-container">
-        <div class="board-column-header">
-        <%= board.name %>
-          <%= image_tag "https://svgshare.com/i/xJ_.svg", class: "to-disable-btn icon-task", data: { controller: "popovers", bs_toggle: "popover", bs_trigger: "hover", bs_placement: "right", title: "Description", bs_content: "#{board.description}" } %>
+    <div class="board-column py-3">
+      <div class="board-column-container" data-controller="edit-board">
+        <div class="board-column-header p-0"  >
+          <div data-edit-board-target="card">
+            <div data-edit-board-target="infos" class="px-4">
+              <span data-action="click->edit-board#displayForm">
+                <span class="to-disable-btn" data-controller="popovers" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right" data-bs-content="<%= board.description %>">
+                  <%= board.name %>
+                </span>
+              </span>
+            </div>
+            <%= render "shared/projects/boards/form", project: @project, board: board %>
+          </div>
         </div>
         <div class="board-column-content-wrapper">
           <div class="board-column-content" id="board-<%= board.id %>" >
@@ -31,7 +39,6 @@
     <%= render "shared/projects/labels/add", task: task %>
     <%= render "shared/projects/boards/deadline", task: task, board: board %>
     <%= render "shared/projects/boards/assignee", task: task, board: board %>
-
   <% end %>
 <% end %>
 
