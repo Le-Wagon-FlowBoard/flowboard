@@ -1,32 +1,44 @@
+puts 'Destroying assignees...'
 Assignee.destroy_all
+puts 'Destroying subtasks...'
 Subtask.destroy_all
+puts 'Destroying subtask groups...'
 SubtaskGroup.destroy_all
+puts 'Destroying task labels...'
 TaskLabel.destroy_all
+puts 'Destroying labels...'
 Label.destroy_all
+puts 'Destroying project permissions...'
 ProjectPermission.destroy_all
+puts 'Destroying tasks...'
 Task.destroy_all
+puts 'Destroying boards...'
 Board.destroy_all
+puts 'Destroying messages...'
+Message.destroy_all
+puts 'Destroying projects...'
 Project.destroy_all
+puts 'Destroying users...'
 User.destroy_all
 
 # Users
 puts 'Creating users...'
-User.create!(email: 'roger@pizzeria.com', password: 'password', first_name: 'Roger', last_name: 'Smith')
-User.create!(email: 'julien@pizzeria.com', password: 'password', first_name: 'Julien', last_name: 'Pineau')
-User.create!(email: 'amelie@belle-piscines.fr', password: 'password', first_name: 'Amélie', last_name: 'Dupont')
-User.create!(email: 'aurelien@carrent.fr', password: 'password', first_name: 'Aurélien', last_name: 'Lambert')
+user1 = User.create!(email: 'roger@pizzeria.com', password: 'password', first_name: 'Roger', last_name: 'Smith')
+user2 = User.create!(email: 'julien@pizzeria.com', password: 'password', first_name: 'Julien', last_name: 'Pineau')
+user3 = User.create!(email: 'amelie@belle-piscines.fr', password: 'password', first_name: 'Amélie', last_name: 'Dupont')
+user4 = User.create!(email: 'aurelien@carrent.fr', password: 'password', first_name: 'Aurélien', last_name: 'Lambert')
 puts 'Users created!'
 
 # Projects
 puts 'Creating projects...'
-Project.create!(name: 'Pizzeria', description: 'A new pizzeria near you', user: User.first)
+project1 = Project.create!(name: 'Pizzeria', description: 'A new pizzeria near you', user: User.first)
 puts 'Projects created!'
 
 # Boards
 puts 'Creating boards...'
-Board.create!(name: 'Todo', description: 'Task to do', project: Project.first)
-Board.create!(name: 'In progress', description: 'Task in progress', project: Project.first)
-Board.create!(name: 'Done', description: 'Task done', project: Project.first)
+board1 = Board.create!(name: 'Todo', description: 'Task to do', project: Project.first)
+board2 = Board.create!(name: 'In progress', description: 'Task in progress', project: Project.first)
+board3 = Board.create!(name: 'Done', description: 'Task done', project: Project.first)
 puts 'Boards created!'
 
 # Labels
@@ -88,19 +100,36 @@ TaskLabel.create!(task: task_17, label: label_kitchen)
 TaskLabel.create!(task: task_18, label: label_kitchen)
 puts 'Task labels created!'
 
-# puts 'Creating project permissions...'
+puts 'Creating project permissions...'
+ProjectPermission.create!(user: user3, project: project1)
+puts 'Project permissions created!'
 
+puts 'Creating assignees...'
+Assignee.create!(user: user1, task: task_1)
+Assignee.create!(user: user3, task: task_1)
+Assignee.create!(user: user1, task: task_2)
+Assignee.create!(user: user3, task: task_2)
+Assignee.create!(user: user3, task: task_3)
+Assignee.create!(user: user1, task: task_4)
+Assignee.create!(user: user3, task: task_13)
+Assignee.create!(user: user3, task: task_14)
+Assignee.create!(user: user1, task: task_17)
+Assignee.create!(user: user3, task: task_18)
+puts 'Assignees created!'
 
-# # Subtask Groups
-# SubtaskGroup.create!(name: 'Subtask Group 1', task: Task.first)
-# SubtaskGroup.create!(name: 'Subtask Group 2', task: Task.second)
-
-# # Subtasks
-# Subtask.create!(name: 'Subtask 1', subtask_group: SubtaskGroup.first)
-# Subtask.create!(name: 'Subtask 2', subtask_group: SubtaskGroup.second)
-
-# # Assignees
-# Assignee.create!(user: User.first, task: Task.first)
-# Assignee.create!(user: User.second, task: Task.second)
+puts 'Creating messages...'
+# create a small conversation with user1 and user3 on project1
+Message.create!(content: 'Hello, how are you? 👋', user: user1, project: project1)
+Message.create!(content: 'I am fine, thanks! 😁', user: user3, project: project1)
+Message.create!(content: 'What about you?', user: user3, project: project1)
+Message.create!(content: 'I am fine too, thanks!', user: user1, project: project1)
+Message.create!(content: 'What kind of tables do we need ? 🤔', user: user3, project: project1)
+Message.create!(content: 'I think we need 10 tables for 4 people and 5 tables for 2 people, as for the chairs we need 50 chairs', user: user1, project: project1)
+Message.create!(content: 'Ok, I will order them', user: user3, project: project1)
+Message.create!(content: 'Great, thanks!', user: user1, project: project1)
+Message.create!(content: 'I will order the meat and the flour', user: user1, project: project1)
+Message.create!(content: 'By the way, did you found anynone to hire?', user: user1, project: project1)
+Message.create!(content: 'We need someone that can cook pizzas but that also knows how to make pasta', user: user1, project: project1)
+puts 'Messages created!'
 
 puts 'Seeding complete!'
