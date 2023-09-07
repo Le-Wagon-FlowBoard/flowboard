@@ -5,10 +5,11 @@
     <div class="board-column py-3">
       <div class="board-column-container" data-controller="edit-board">
         <div class="board-column-header p-0"  >
-          <div data-edit-board-target = "card" data-action="click->edit-board#displayForm">
-            <div data-edit-board-target = "infos" class="px-4">
-            
-              <%= board.name %>
+          <div data-edit-board-target="card">
+            <div data-edit-board-target="infos" class="px-4">
+              <span data-action="click->edit-board#displayForm">
+                <%= board.name %>
+              </span>
             </div>
             <%= render "shared/projects/boards/form", project: @project, board: board %>
           </div>
