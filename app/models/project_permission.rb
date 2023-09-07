@@ -4,5 +4,4 @@ class ProjectPermission < ApplicationRecord
 
   validates :project_id, presence: true
   validates :user_id, presence: true
-  validates :access, presence: true, inclusion: { in: %w[editor viewer] }
 end

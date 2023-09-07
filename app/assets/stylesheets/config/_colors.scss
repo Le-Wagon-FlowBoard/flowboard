@@ -2,17 +2,14 @@
 
 // For example:
 
-$background: #262c49;
-$background-shade: rgb(55, 64, 105);
+$background: #454a60;
+$background-shade: #374069;
 $dark-background: #10163a;
 $grey: #5a5f75;
 $light-grey: #c2c6dc;
 $purple: #6d62e4;
 $dark-purple: #3f3a9e;
-
-// $blue: #95AAE8;
-// $darkblue: #3957FF;
-// $white: #FFFFFF;
+$red: #e46262;
 
 .text-background {
 	color: $background;
@@ -40,6 +37,10 @@ $dark-purple: #3f3a9e;
 
 .text-background-shade {
 	color: $background-shade;
+}
+
+.text-red {
+	color: $red;
 }
 
 .bg-background {
@@ -70,6 +71,6 @@ $dark-purple: #3f3a9e;
 	background-color: $background-shade;
 }
 
-.border-color-purple{
-  border-color: $purple;
+.border-color-purple {
+	border-color: $purple;
 }

@@ -2,7 +2,12 @@ import { Controller } from '@hotwired/stimulus';
 const columnGrids = [];
 
 export default class extends Controller {
+
+    static targets = ["infos", "form", "card", "input"]
+
     connect() {
+
+      console.log("Muuri controller connected")
         var dragContainer = document.querySelector('.drag-container');
 
         // Board Draggables
@@ -45,6 +50,7 @@ export default class extends Controller {
                 })
                 .on('dragReleaseEnd', function (item) {
                     item.getGrid().refreshItems([item]);
+                    item.getGrid().synchronize();
 
                     // re enable clickable elements
                     item.getElement().querySelectorAll('.to-disable-btn').forEach((element) => {
@@ -54,8 +60,7 @@ export default class extends Controller {
                     const task = item.getElement().id;
                     const boardId = item.getGrid().getElement().id.split('-')[1];
                     const taskId = task.split('-')[3];
-                    const itemPosition = item.getGrid().getItem(item.getElement()).getPosition();
-                    const newPosition = calculatePos(itemPosition.top);
+                    const newPosition = calculatePos(item.getGrid().getElement(), item.getElement());
                     const project_id = Number(window.location.pathname.split('/')[2]);
                     let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
                     fetch(`/projects/${project_id}/boards/${boardId}/tasks/${taskId}`, {
@@ -85,34 +90,55 @@ export default class extends Controller {
             dragHandle: '.board-column-header'
         });
 
-        function calculatePos(pos) {
-            return Math.ceil(pos / 48);
+        function calculatePos(parent, item) {
+            let children = parent.children;
+            let itemIndex = Array.prototype.indexOf.call(children, item);
+            return itemIndex;
         }
     }
 
+    showForm(event) {
+        let boardId = event.target.id.split("-")[2]
+        event.preventDefault();
+        document.getElementById(`add-task-${boardId}`).classList.add("d-none");
+        document.getElementById(`form-task-${boardId}`).classList.remove("d-none");
+        document.getElementById(`form-task-${boardId}`).focus();
+    }
+
     addTask(event) {
-        const boardId = event.currentTarget.dataset.boardId;
-        const taskName = prompt("Enter task name to add to board No. " + boardId);
-        if (taskName !== null && taskName.trim() !== "") {
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-            fetch(`/projects/${this.projectId}/boards/${boardId}/tasks`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-Token": csrfToken,
-                },
-                body: JSON.stringify({
-                    board_id: boardId,
-                    task_name: taskName,
-                }),
-            })
-                .then((response) => response.json())
-                .then((response) => {
-                    this.createTaskElement(boardId, response.id, taskName);
-                })
-                .catch((error) => {
-                    console.error("Error saving task to database:", error);
-                });
+        event.preventDefault();
+
+        if (event.key === "Enter") {
+          const boardId = event.currentTarget.dataset.boardId;
+          const taskName = document.getElementById(`form-task-${boardId}`).value;
+          if (taskName !== null && taskName.trim() !== "") {
+              const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+              fetch(`/projects/${this.projectId}/boards/${boardId}/tasks`, {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json",
+                      "X-CSRF-Token": csrfToken,
+                  },
+                  body: JSON.stringify({
+                      board_id: boardId,
+                      task_name: taskName,
+                  }),
+              })
+                  .then((response) => response.json())
+                  .then((response) => {
+                    console.log(response)
+                      this.createTaskElement(boardId, response.id, taskName);
+                      document.getElementById(`form-task-${boardId}`).value = "";
+                  })
+                  .catch((error) => {
+                      console.error("Error saving task to database:", error);
+                  });
+          }
+        } else if (event.key === "Escape") {
+          const boardId = event.currentTarget.dataset.boardId;
+          document.getElementById(`add-task-${boardId}`).classList.remove("d-none");
+          document.getElementById(`form-task-${boardId}`).classList.add("d-none");
+          document.getElementById(`form-task-${boardId}`).value = "";
         }
     }
 
@@ -149,47 +175,39 @@ export default class extends Controller {
         const iconsContainer = document.createElement("div");
         iconsContainer.classList.add("icons", "bg-background", "p-2");
         iconsContainer.style.visibility = "hidden";
-        // <div class="icons bg-background p-2">
-        //     <%= image_tag "clock.svg", class: "to-disable-btn icon-task" %>
-        //     <%= image_tag "label.svg", class: "to-disable-btn icon-task" %>
-        //     <%= image_tag "user.svg", class: "to-disable-btn icon-task" %>
-        //     <%= image_tag "infos.svg", class: "to-disable-btn icon-task" %>
-        // </div>
 
-        // .icons {
-        	// visibility: hidden;
-        	// position: absolute;
-        	// top: 50%;
-        	// right: 10px;
-        	// transform: translateY(-50%);
-        	// display: flex;
-        	// gap: 10px;
-        	// z-index: 1;
-        // }
-        // 
-        // .task-container:hover .icons {
-        	// visibility: visible;
-        // }
         const clockIcon = document.createElement("img");
-        clockIcon.src = "/assets/clock.svg";
+        clockIcon.src = "https://svgshare.com/i/xKJ.svg";
         clockIcon.classList.add("to-disable-btn", "icon-task");
+        // add data-bs-toggle="modal" data-bs-target="#addDeadLineModal-#{task.id}" to open the modal
+        clockIcon.setAttribute("data-bs-toggle", "modal");
+        clockIcon.setAttribute("data-bs-target", `#addDeadLineModal-${taskId}`);
+        clockIcon.id = `addDeadLineModalButton`;
         iconsContainer.appendChild(clockIcon);
 
         const labelIcon = document.createElement("img");
-        labelIcon.src = "/assets/label.svg";
+        labelIcon.src = "https://svgshare.com/i/xKV.svg";
         labelIcon.classList.add("to-disable-btn", "icon-task");
+        labelIcon.setAttribute("data-bs-toggle", "modal");
+        labelIcon.setAttribute("data-bs-target", `#addLabelModal-${taskId}`);
+        labelIcon.id = `addLabelModalButton`;
         iconsContainer.appendChild(labelIcon);
 
         const userIcon = document.createElement("img");
-        userIcon.src = "/assets/user.svg";
+        userIcon.src = "https://svgshare.com/i/xJ2.svg";
         userIcon.classList.add("to-disable-btn", "icon-task");
+        userIcon.setAttribute("data-bs-toggle", "modal");
+        userIcon.setAttribute("data-bs-target", `#addAssigneeModal-${taskId}`);
+        userIcon.id = `addAssigneeModalButton`;
         iconsContainer.appendChild(userIcon);
 
         const infosIcon = document.createElement("img");
-        infosIcon.src = "/assets/infos.svg";
+        infosIcon.src = "https://svgshare.com/i/xJ_.svg";
         infosIcon.classList.add("to-disable-btn", "icon-task");
+        infosIcon.setAttribute("data-bs-toggle", "modal");
+        infosIcon.setAttribute("data-bs-target", `#taskInfosModal-${taskId}`);
         iconsContainer.appendChild(infosIcon);
-        
+
         taskContainer.addEventListener("mouseenter", () => {
             iconsContainer.style.visibility = "visible";
         });
@@ -206,6 +224,36 @@ export default class extends Controller {
             return columnGrid.getElement().id === `board-${boardId}`;
         });
         grid.add(taskElement);
+
+        fetch(`/add_label_modal?task_id=${taskId}`)
+            .then((response) => response.text())
+            .then((response) => {
+                const body = document.querySelector("body");
+                body.insertAdjacentHTML("beforeend", response);
+            })
+            .catch((error) => {
+                console.error("Error fetching label modal:", error);
+            });
+
+        fetch(`/add_deadline_modal?task_id=${taskId}`)
+            .then((response) => response.text())
+            .then((response) => {
+                const body = document.querySelector("body");
+                body.insertAdjacentHTML("beforeend", response);
+            })
+            .catch((error) => {
+                console.error("Error fetching deadline modal:", error);
+            });
+            
+        fetch(`/add_assignee_modal?task_id=${taskId}`)
+            .then((response) => response.text())
+            .then((response) => {
+                const body = document.querySelector("body");
+                body.insertAdjacentHTML("beforeend", response);
+            })
+            .catch((error) => {
+                console.error("Error fetching assignee modal:", error);
+            });
 
         setTimeout(() => {
             taskElement.scrollIntoView({

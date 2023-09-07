@@ -64,6 +64,14 @@
 	scrollbar-width: none;
 	-ms-overflow-style: none;
 }
+.board-column-content-wrapper::-webkit-scrollbar {
+    width: 0em;
+}
+
+.board-column-content-wrapper::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
 .board-column-content {
 	position: relative;
 	min-height: 100px;

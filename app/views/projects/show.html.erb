@@ -1,4 +1,9 @@
-<%= render 'shared/navbar', project: @project %>
+<!-- Facebook Open Graph data -->
+<% content_for :meta_title, "#{@project.name} - #{meta_title}" %>
+<% content_for :meta_description, @project.description %>
+
+<!-- Render Appp -->
+<%= render 'shared/navbar' %>
 
 <%= render 'shared/projects/boards/card', boards: @boards %>
 
