@@ -20,7 +20,8 @@
                     <%= image_tag "https://svgshare.com/i/xKV.svg", class: "to-disable-btn icon-task", data: { bs_toggle: "modal", bs_target: "#addLabelModal-#{task.id}" }, id: "addLabelModalButton"%>
                 <% end %>
                 <%= image_tag "https://svgshare.com/i/xJ2.svg", class: "to-disable-btn icon-task" %>
-                <%= image_tag "https://svgshare.com/i/xJ_.svg", class: "to-disable-btn icon-task" %>
+                <%= image_tag "https://svgshare.com/i/xJ_.svg", class: "to-disable-btn icon-task", data: { data_controller: "popover", data_bs_toggle: "popover", data_bs_trigger: "hover", data_bs_placement: "right", title: "Description", data_bs_content: "#{task.description}" } %>
+
             </div>
         </div>
     </div>
