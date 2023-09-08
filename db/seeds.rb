@@ -23,10 +23,10 @@ User.destroy_all
 
 # Users
 puts 'Creating users...'
-user1 = User.create!(email: 'roger@pizzeria.com', password: 'password', first_name: 'Roger', last_name: 'Smith')
-user2 = User.create!(email: 'julien@pizzeria.com', password: 'password', first_name: 'Julien', last_name: 'Pineau')
-user3 = User.create!(email: 'amelie@belle-piscines.fr', password: 'password', first_name: 'Amélie', last_name: 'Dupont')
-user4 = User.create!(email: 'aurelien@carrent.fr', password: 'password', first_name: 'Aurélien', last_name: 'Lambert')
+user1 = User.create!(email: 'killian@pizzeria.com', password: 'password', first_name: 'Killian', last_name: 'DAL-CIN')
+user2 = User.create!(email: 'josue@pizzeria.com', password: 'password', first_name: 'Josué', last_name: 'de Almeida Rodrigues')
+user3 = User.create!(email: 'benjamin@pizzeria.com', password: 'password', first_name: 'Benjamin', last_name: 'Barillot')
+user4 = User.create!(email: 'poulpy@pizzeria.com', password: 'password', first_name: 'Poulpy', last_name: 'Poulp')
 puts 'Users created!'
 
 # Projects
