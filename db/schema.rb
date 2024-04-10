@@ -127,7 +127,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_093229) do
   add_foreign_key "assignees", "users"
   add_foreign_key "boards", "projects"
   add_foreign_key "labels", "projects"
-  add_foreign_key "messages", "projects"
+  add_foreign_key "messages", "projects", on_delete: :cascade
   add_foreign_key "messages", "users"
   add_foreign_key "project_permissions", "projects"
   add_foreign_key "project_permissions", "users"

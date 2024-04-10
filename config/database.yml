@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
   database: flowboard_production
   username: flowboard
   password: <%= ENV["FLOWBOARD_DATABASE_PASSWORD"] %>
