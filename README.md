@@ -47,6 +47,6 @@ Please note that some of the elements were not implemented
 
 ## Get Started Today!
 
-Join thousands of creative teams already using FlowBoard to simplify their project management and optimize their collaboration. Sign up now and start creating, collaborating, and succeeding with FlowBoard!
+Sign up now and start creating, collaborating, and succeeding with FlowBoard!
 
 For more information, visit our website: [flowboard.killiandalcin.fr](https://flowboard.killiandalcin.fr)
