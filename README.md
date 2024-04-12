@@ -1,34 +1,52 @@
-# FlowBoard - Simplifiez la gestion de vos projets créatifs
+# FlowBoard - Simplify your creative projects management
 
 ## Description
 
-FlowBoard est une solution conçue spécialement pour les petites équipes de freelances créatifs qui cherchent à centraliser leurs projets et la gestion de leurs tâches. Notre objectif est de simplifier la gestion de projets en ligne, d'optimiser la collaboration et de suivre les tâches de manière efficace.
+FlowBoard is a solution designed specifically for small teams of creative freelancers looking to centralize their projects and task management. Our goal is to simplify online project management, optimize collaboration, and efficiently track tasks.
 
-## Fonctionnalités
+## Features
 
-- Tableau visuel intuitif pour planifier, suivre et collaborer facilement sur les projets.
-- Interface conviviale facilitant la navigation et l'utilisation.
-- Fonctionnalités intuitives pour une expérience utilisateur fluide.
+- Intuitive visual board for easy planning, tracking, and collaboration on projects.
+- User-friendly interface for easy navigation and use.
+- Intuitive features for a smooth user experience.
 
-## Originalité
+## Originality
 
-FlowBoard réinvente la gestion de projets avec sa conception innovante et ses fonctionnalités intuitives. Notre interface conviviale offre une expérience de gestion de projet agréable et efficace, permettant aux équipes de se concentrer sur leur travail créatif sans être entravées par des outils complexes.
+FlowBoard reinvents project management with its innovative design and intuitive features. Our user-friendly interface provides an enjoyable and efficient project management experience, allowing teams to focus on their creative work without being hindered by complex tools.
 
-## Comment ça marche
+## How it works
 
-1. **Créez votre tableau de projet**: Commencez par créer un tableau pour votre projet et organisez-le selon vos besoins.
-2. **Ajoutez des tâches et des collaborateurs**: Ajoutez des tâches à votre tableau et attribuez-les à vos collaborateurs.
-3. **Suivez le progrès en temps réel**: Suivez facilement le progrès de vos projets et des tâches assignées grâce à notre tableau visuel intuitif.
-4. **Collaborez efficacement**: Facilitez la collaboration en discutant directement sur les tâches et en partageant des fichiers au sein de FlowBoard.
+1. **Create your project board**: Start by creating a board for your project and organize it according to your needs.
+2. **Add tasks and collaborators**: Add tasks to your board and assign them to your collaborators.
+3. **Track progress in real-time**: Easily track the progress of your projects and assigned tasks through our intuitive visual board.
+4. **Collaborate efficiently**: Facilitate collaboration by discussing tasks directly and sharing files within FlowBoard.
 
-## Pourquoi FlowBoard ?
+## Why FlowBoard?
 
-- **Simplicité**: FlowBoard simplifie la gestion de projets pour les équipes créatives, en offrant une interface conviviale et des fonctionnalités intuitives.
-- **Efficacité**: Notre tableau visuel permet de suivre et de collaborer sur les projets de manière efficace, en facilitant la communication et la coordination entre les membres de l'équipe.
-- **Innovation**: Nous réinventons la gestion de projets en ligne avec FlowBoard, offrant ainsi une solution unique et adaptée aux besoins des petites équipes de freelances créatifs.
+- **Simplicity**: FlowBoard simplifies project management for creative teams by offering a user-friendly interface and intuitive features.
+- **Efficiency**: Our visual board makes it easy to track and collaborate on projects efficiently, facilitating communication and coordination among team members.
+- **Innovation**: We reinvent online project management with FlowBoard, providing a unique solution tailored to the needs of small teams of creative freelancers.
 
-## Commencez dès aujourd'hui !
+## Technology Stack
 
-Rejoignez des milliers d'équipes créatives qui utilisent déjà FlowBoard pour simplifier leur gestion de projets et optimiser leur collaboration. Inscrivez-vous dès maintenant et commencez à créer, collaborer et réussir avec FlowBoard !
+FlowBoard was created using the following technologies:
 
-Pour plus d'informations, visitez notre site web : [flowboard.killiandalcin.fr](https://flowboard.killiandalcin.fr)
+- **Ruby on Rails**: Backend framework for building web applications.
+- **Stimulus**: JavaScript framework for building interactive web interfaces.
+- **PostgreSQL**: Relational database management system.
+- **Redis**: In-memory data structure store used as a database, cache, and message broker.
+- **Bootstrap**: Frontend framework for building responsive and mobile-first websites.
+- **Devise**: Ruby gem for user authentication.
+- **SimpleForm**: Ruby gem for form creation and customization.
+- **ActsAsList**: Ruby gem for managing ordered lists.
+
+## Database Schema
+Please note that some of the elements were not implemented
+
+![Database Schema](schema.png)
+
+## Get Started Today!
+
+Join thousands of creative teams already using FlowBoard to simplify their project management and optimize their collaboration. Sign up now and start creating, collaborating, and succeeding with FlowBoard!
+
+For more information, visit our website: [www.flowboard.com](https://www.flowboard.com)
