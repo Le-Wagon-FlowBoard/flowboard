@@ -45,6 +45,33 @@ Please note that some of the elements were not implemented
 
 ![Database Schema](schema.png)
 
+## Screenshots
+
+### Home
+
+![Home](Home.png)
+
+The Home screen provides an overview of your projects and tasks, allowing you to easily navigate to different sections of the app.
+
+### Projects
+
+![Projects](Projects.png)
+
+The Projects screen displays a list of all your projects, with options to create new projects or manage existing ones.
+
+### Project
+
+![Project](Project.png)
+
+The Project screen provides detailed information about a specific project, including tasks, collaborators, and progress tracking.
+
+### Chat
+
+![Chat](Chat.png)
+
+The Chat feature allows team members to communicate and collaborate in real-time, making it easy to discuss tasks and share updates.
+
+
 ## Get Started Today!
 
 Sign up now and start creating, collaborating, and succeeding with FlowBoard!
