@@ -49,4 +49,4 @@ Please note that some of the elements were not implemented
 
 Join thousands of creative teams already using FlowBoard to simplify their project management and optimize their collaboration. Sign up now and start creating, collaborating, and succeeding with FlowBoard!
 
-For more information, visit our website: [www.flowboard.com](https://www.flowboard.com)
+For more information, visit our website: [flowboard.killiandalcin.fr](https://flowboard.killiandalcin.fr)
